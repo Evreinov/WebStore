@@ -1,6 +1,28 @@
 ﻿@site-font: 'Montserrat', sans-serif;
+@font-weight-thin: 100;
+@font-weight-light: 300;
+@font-weight-bold: 700;
+@width-site: 1170px;
+@color-gray: #6c6c6c;
 
 body {
     font-family: @site-font;
-    background-color: rebeccapurple;
+    font-weight: @font-weight-light;
+    color: @color-gray;
+}
+
+.container {
+    max-width: @width-site;
+    min-height: 100%;
+    margin: 0 auto;
+    background-color: white;
+}
+
+nav {
+    ul {
+        li {
+            list-style: none;
+            text-decoration: none;
+        }
+    }
 }

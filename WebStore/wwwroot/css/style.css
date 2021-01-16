@@ -1,4 +1,15 @@
 body {
   font-family: 'Montserrat', sans-serif;
-  background-color: rebeccapurple;
+  font-weight: 300;
+  color: #6c6c6c;
+}
+.container {
+  max-width: 1170px;
+  min-height: 100%;
+  margin: 0 auto;
+  background-color: white;
+}
+nav ul li {
+  list-style: none;
+  text-decoration: none;
 }

@@ -11,12 +11,14 @@
 
 
 <body>
-    <nav>
-        <ul class="menu">
-            <li>@Html.ActionLink("Главная", "Index", "Home")</li>
-            <li>@Html.ActionLink("Сотрудники", "Employees", "Home")</li>
-        </ul>
-    </nav>
-    @RenderBody()
+    <div class="container">
+        <nav>
+            <ul class="menu">
+                <li>@Html.ActionLink("Главная", "Index", "Home")</li>
+                <li>@Html.ActionLink("Сотрудники", "Employees", "Home")</li>
+            </ul>
+        </nav>
+        @RenderBody()
+    </div>
 </body>
 </html>
