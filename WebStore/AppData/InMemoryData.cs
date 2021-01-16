@@ -7,17 +7,11 @@ namespace WebStore.AppData
 {
     public class InMemoryData
     {
-        public ICollection<Employee> Employees { get; set; } = new List<Employee>();
-
-        public InMemoryData()
+        public void Load(ref List<Employee> employees)
         {
-            Load();
-        }
-        public void Load()
-        {
-            if (Employees is null || Employees.Count == 0)
+            if (employees is null || employees.Count == 0)
             {
-                Employees = Enumerable.Range(1, 45)
+                employees = Enumerable.Range(1, 45)
                     .Select(i => new Employee
                     {
                         Id = i,
@@ -25,7 +19,7 @@ namespace WebStore.AppData
                         LastName = $"Фамилия{i}",
                         Patronymic = $"Отчество{i}",
                         ShortName = $"Фамилия{i} И{i}. О{i}.",
-                        Birthday = DateTime.Now.AddMonths(i * 2 + 240),
+                        Birthday = DateTime.Now.AddMonths(i * 2 - 560),
                         Sex = i % 2 == 0 ? 0 : 1,
                         Number = i.ToString("D5"),
                         InternalPhone = $"1{i:D2}",
