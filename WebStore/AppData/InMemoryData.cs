@@ -18,7 +18,7 @@ namespace WebStore.AppData
                         FirstName = $"Имя{i}",
                         LastName = $"Фамилия{i}",
                         Patronymic = $"Отчество{i}",
-                        ShortName = $"Фамилия{i} И{i}. О{i}.",
+                        ShortName = $"Фамилия{i} И. О.",
                         Birthday = DateTime.Now.AddMonths(i * 2 - 560),
                         Sex = i % 2 == 0 ? 0 : 1,
                         Number = i.ToString("D5"),

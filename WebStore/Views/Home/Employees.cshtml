@@ -3,29 +3,14 @@
 }
 @model IEnumerable<WebStore.Models.Employee>
 
-<h3>Сотрудники</h3>
-<table>
-    <thead>
-        <tr>
-            <th>#</th>
-            <th>Фамилия</th>
-            <th>Имя</th>
-            <th>Отчество</th>
-            <th>Возраст</th>
-            <th>Ссылка</th>
-        </tr>
-    </thead>
-    <tbody>
+<div class="content">
+    <div class="list">
+        <h3>Сотрудники</h3>
         @foreach (var employee in Model)
         {
-            <tr>
-                <td>@employee.Id</td>
-                <td>@employee.LastName</td>
-                <td>@employee.FirstName</td>
-                <td>@employee.Patronymic</td>
-                <td>@(DateTime.Now.Year - employee.Birthday.Year)</td>
-                <td>@Html.ActionLink("Детали", "DetailsEmployee", new { id = employee.Id }) </td>
-            </tr>
+            @Html.ActionLink($"{employee.LastName} {employee.FirstName} {employee.Patronymic}, {(DateTime.Now.Year - employee.Birthday.Year)}",
+         "DetailsEmployee",
+         new { id = employee.Id })<br />
         }
-    </tbody>
-</table>
+    </div>
+</div>

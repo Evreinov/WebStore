@@ -1,12 +1,24 @@
-﻿@model WebStore.Models.Employee
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@model WebStore.Models.Employee
 
-<!DOCTYPE html>
-
-<html>
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <title>DetailsEmployee</title>
-</head>
-<body>
-</body>
-</html>
+<div class="content">
+    <div class="list">
+        <h3>Сотрудник</h3>
+        @Model.LastName
+        @Model.FirstName
+        @Model.Patronymic
+        @Model.ShortName
+        @(Model.Sex == 0 ? "Женский" : "Мужской")
+        @Model.Birthday.ToString("D")
+        @Model.Number
+        @Model.InternalPhone
+        @Model.MobilePhone
+        @Model.BusinessPhone
+        @Model.HomePhone
+        @Model.Fax
+        @Model.Email
+        @Model.ImagePath
+    </div>
+</div>

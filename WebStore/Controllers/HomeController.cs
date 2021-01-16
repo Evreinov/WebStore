@@ -8,6 +8,13 @@ namespace WebStore.Controllers
     public class HomeController : Controller
     {
         private List<Employee> __employees = new List<Employee>();
+
+        public HomeController()
+        {
+#if DEBUG
+            new WebStore.AppData.InMemoryData().Load(ref __employees);
+#endif
+        }
         public IActionResult Index()
         {
             return View();
@@ -15,9 +22,6 @@ namespace WebStore.Controllers
 
         public IActionResult Employees()
         {
-#if DEBUG
-            new WebStore.AppData.InMemoryData().Load(ref __employees);
-#endif
             return View(__employees);
         }
 
