@@ -27,7 +27,8 @@ namespace WebStore.AppData
                         MobilePhone = $"+712345678{i:D2}",
                         BusinessPhone = $"+712345678{i:D2}",
                         Fax = $"+712345678{i:D2}",
-                        Email = $"user{i}@supermail.ru"
+                        Email = $"user{i}@supermail.ru",
+                        ImagePath = i % 2 == 0 ? $"~/img/profile_female.png" : $"~/img/profile_male.png"
                     })
                     .ToList();
             }

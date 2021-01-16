@@ -1,14 +1,36 @@
-﻿@{
-    Layout = "~/Views/Shared/_Layout.cshtml";
-}
-@model WebStore.Models.Employee
+<!DOCTYPE html>
+<html>
 
-<div class="content">
-    <div class="list">
-        <h3>Сотрудник</h3>
+<head>
+    <meta charset="utf-8" />
+    <title>@ViewBag.Title</title>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css?family=Allura|Merriweather+Sans:400,700,800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/normalize.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+
+<body>
+    <!-- SECTION: Navigation -->
+    <div class="navigation">
+        <div class="navigation__wrapper">
+            <a class="navigation__logo" href="#">GB</a>
+            <nav class="navigation__container">
+                <ul class="navigation__list">
+                    <li><a href="#">Главная</a></li>
+                    <li><a href="#">Сотрудники</a></li>
+                </ul>
+            </nav>
+        </div>
+    </div>
+    <!-- END SECTION: Navigation -->
+    <!-- SECTION: Content -->
+    <div class="content">
         <div class="card">
+            <h3>Сотрудник</h3>
             <div class="img__profile">
-                <img src="@Url.Content(Model.ImagePath)" alt="Фотография профиля" />
+                <img src="img/profile_male.png" alt="Фотография профиля" />
             </div>
             <div class="card__descriptions">
                 <p class="tag">Фамилия</p>
@@ -40,4 +62,6 @@
             </div>
         </div>
     </div>
-</div>
+</body>
+
+</html>
