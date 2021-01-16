@@ -22,6 +22,8 @@ namespace WebStore
 
             app.UseRouting();
 
+            app.UseStaticFiles();   // добавляем поддержку статических файлов
+
             app.UseEndpoints(endpoints =>
             {
                 //endpoints.MapGet("/", async context =>
