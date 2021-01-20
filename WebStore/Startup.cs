@@ -20,6 +20,9 @@ namespace WebStore
                 app.UseDeveloperExceptionPage();
             }
 
+            // Включение обслуживания статических файлов.
+            app.UseStaticFiles();
+
             app.UseRouting();
 
             app.UseEndpoints(endpoints =>
