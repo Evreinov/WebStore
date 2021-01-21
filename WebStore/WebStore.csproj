@@ -5,12 +5,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Controllers\" />
-    <Folder Include="Views\" />
     <Folder Include="Models\" />
-    <Folder Include="Views\" />
     <Folder Include="Models\" />
-    <Folder Include="Controllers\" />
     <Folder Include="wwwroot\lib\" />
   </ItemGroup>
 

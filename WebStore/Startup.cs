@@ -27,10 +27,11 @@ namespace WebStore
 
             app.UseEndpoints(endpoints =>
             {
-                endpoints.MapGet("/", async context =>
-                {
-                    await context.Response.WriteAsync("Hello World!");
-                });
+
+                //endpoints.MapGet("/", async context =>
+                //{
+                //    await context.Response.WriteAsync("Hello World!");
+                //});
 
                 // —тандартна€ маршрутизаци€ используетс€ с контроллерами и представлени€ми.
                 endpoints.MapControllerRoute(
