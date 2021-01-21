@@ -11,6 +11,12 @@ namespace WebStore
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews().AddRazorRuntimeCompilation();
+
+#if DEBUG
+            // Загрузка тестовых данных в память.
+            Data.TestData.Load();
+#endif
+
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
