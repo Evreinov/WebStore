@@ -7,7 +7,7 @@
     <meta name="author" content="">
     <title>@ViewBag.Title | E-Shopper</title>
 
-    <partial name="Partial/_Styles.cshtml" />
+    <partial name="Partial/_Styles" />
 
     @await RenderSectionAsync("Styles", false)
 
@@ -20,13 +20,13 @@
 
 <body>
 
-    <partial name="Partial/_Header.cshtml" />
+    <partial name="Partial/_Header" />
 
     @RenderBody()
 
-    <partial name="Partial/_Footer.cshtml" />
+    <partial name="Partial/_Footer" />
 
-    <partial name="Partial/_Scripts.cshtml" />
+    <partial name="Partial/_Scripts" />
 
     @await RenderSectionAsync("Scripts", false)
 
