@@ -17,7 +17,7 @@ namespace WebStore.Data
         {
             if (Employees is null || Employees.Count == 0)
             {
-                Employees = Enumerable.Range(1, 45)
+                Employees = Enumerable.Range(1, 15)
                     .Select(i => new Employee
                     {
                         Id = i,
