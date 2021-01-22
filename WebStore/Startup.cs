@@ -22,12 +22,14 @@ namespace WebStore
 
             app.UseRouting();
 
+            app.UseStaticFiles();   // добавляем поддержку статических файлов
+
             app.UseEndpoints(endpoints =>
             {
-                endpoints.MapGet("/", async context =>
-                {
-                    await context.Response.WriteAsync("Hello World!");
-                });
+                //endpoints.MapGet("/", async context =>
+                //{
+                //    await context.Response.WriteAsync("Hello World!");
+                //});
 
                 // Стандартная маршрутизация используется с контроллерами и представлениями.
                 endpoints.MapControllerRoute(

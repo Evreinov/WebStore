@@ -1,0 +1,29 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>@ViewBag.Title</title>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css?family=Allura|Merriweather+Sans:400,700,800&display=swap" rel="stylesheet">
+    <link href="@Url.Content("~/css/normalize.css")" rel="stylesheet" type="text/css" />
+    <link href="@Url.Content("~/css/style.css")" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+    <!-- SECTION: Navigation -->
+    <div class="navigation">
+        <div class="navigation__wrapper">
+            @Html.ActionLink("GB", "Index", "Home", new object { }, new { @class = "navigation__logo" })
+            <nav class="navigation__container">
+                <ul class="navigation__list">
+                    <li>@Html.ActionLink("Главная", "Index", "Home")</li>
+                    <li>@Html.ActionLink("Сотрудники", "Employees", "Home")</li>
+                </ul>
+            </nav>
+        </div>
+    </div>
+    <!-- END SECTION: Navigation -->
+    <!-- SECTION: Content -->
+    @RenderBody()
+</body>
+</html>

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <title>@ViewBag.Title</title>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css?family=Allura|Merriweather+Sans:400,700,800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/normalize.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+
+<body>
+    <!-- SECTION: Navigation -->
+    <div class="navigation">
+        <div class="navigation__wrapper">
+            <a class="navigation__logo" href="#">GB</a>
+            <nav class="navigation__container">
+                <ul class="navigation__list">
+                    <li><a href="#">Главная</a></li>
+                    <li><a href="#">Сотрудники</a></li>
+                </ul>
+            </nav>
+        </div>
+    </div>
+    <!-- END SECTION: Navigation -->
+    <!-- SECTION: Content -->
+    <div class="content">
+        <div class="card">
+            <h3>Сотрудник</h3>
+            <div class="img__profile">
+                <img src="img/profile_male.png" alt="Фотография профиля" />
+            </div>
+            <div class="card__descriptions">
+                <p class="tag">Фамилия</p>
+                <p>@Model.LastName</p>
+                <p class="tag">Имя</p>
+                <p> @Model.FirstName</p>
+                <p class="tag">Отчество</p>
+                <p>@Model.Patronymic</p>
+                <p class="tag">Короткое имя</p>
+                <p>@Model.ShortName</p>
+                <p class="tag">Пол</p>
+                <p>@(Model.Sex == 0 ? "Женский" : "Мужской")</p>
+                <p class="tag">День рождения</p>
+                <p>@Model.Birthday.ToString("D")</p>
+                <p class="tag">Табельный №</p>
+                <p>@Model.Number</p>
+                <p class="tag">Внутренний телефон</p>
+                <a href="tel:@Model.InternalPhone">@Model.InternalPhone</a>
+                <p class="tag">Мобильный телефон</p>
+                <a href="tel:@Model.MobilePhone"> @Model.MobilePhone</a>
+                <p class="tag">Рабочий телефон</p>
+                <a href="tel:@Model.BusinessPhone">@Model.BusinessPhone</a>
+                <p class="tag">Домашний телефон</p>
+                <a href="tel:@Model.HomePhone">@Model.HomePhone</a>
+                <p class="tag">Факс</p>
+                <a href="fax:@Model.HomePhone">@Model.HomePhone</a>
+                <p class="tag">E-mail</p>
+                <a href="mailto:@Model.Email">@Model.Email</a>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
