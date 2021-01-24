@@ -1,4 +1,4 @@
-using Microsoft.AspNetCore.Builder;
+п»їusing Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
@@ -13,7 +13,7 @@ namespace WebStore
             services.AddControllersWithViews().AddRazorRuntimeCompilation();
 
 #if DEBUG
-            // Загрузка тестовых данных в память.
+            // Р—Р°РіСЂСѓР·РєР° С‚РµСЃС‚РѕРІС‹С… РґР°РЅРЅС‹С… РІ РїР°РјСЏС‚СЊ.
             Data.TestData.Load();
 #endif
 
@@ -26,7 +26,7 @@ namespace WebStore
                 app.UseDeveloperExceptionPage();
             }
 
-            // Включение обслуживания статических файлов.
+            // Р’РєР»СЋС‡РµРЅРёРµ РѕР±СЃР»СѓР¶РёРІР°РЅРёСЏ СЃС‚Р°С‚РёС‡РµСЃРєРёС… С„Р°Р№Р»РѕРІ.
             app.UseStaticFiles();
 
             app.UseRouting();
@@ -39,7 +39,7 @@ namespace WebStore
                 //    await context.Response.WriteAsync("Hello World!");
                 //});
 
-                // Стандартная маршрутизация используется с контроллерами и представлениями.
+                // РЎС‚Р°РЅРґР°СЂС‚РЅР°СЏ РјР°СЂС€СЂСѓС‚РёР·Р°С†РёСЏ РёСЃРїРѕР»СЊР·СѓРµС‚СЃСЏ СЃ РєРѕРЅС‚СЂРѕР»Р»РµСЂР°РјРё Рё РїСЂРµРґСЃС‚Р°РІР»РµРЅРёСЏРјРё.
                 endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
