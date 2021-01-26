@@ -3,6 +3,8 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using WebStore.Infrastructure.Interfaces;
+using WebStore.Infrastructure.Services;
 
 namespace WebStore
 {
@@ -10,6 +12,7 @@ namespace WebStore
     {
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddTransient<IEmloyeesData, InMemoryEmployeesData>();
             services.AddControllersWithViews().AddRazorRuntimeCompilation();
 
 #if DEBUG

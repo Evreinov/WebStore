@@ -2,66 +2,125 @@
 using System.Collections.Generic;
 using System.Linq;
 using WebStore.Models;
+using WebStore.Infrastructure.Interfaces;
+using WebStore.ViewModels;
+using System;
 
 namespace WebStore.Controllers
 {
     public class EmployeesController : Controller
     {
-        private List<Employee> _Employees;
-        public EmployeesController()
-        {
-            _Employees = Data.TestData.Employees;
-        }
-        public IActionResult Index() => View(_Employees);
+        private readonly IEmloyeesData _Employees;
+        public EmployeesController(IEmloyeesData EmloyeesData) => _Employees = EmloyeesData;
+        public IActionResult Index() => View(_Employees.Get());
 
         public IActionResult Details(int id)
         {
-            var employee = _Employees.FirstOrDefault(e => e.Id == id);
+            var employee = _Employees.Details(id);
             if (employee is not null)
                 return View(employee);
             return NotFound();
         }
 
-        public IActionResult Create()
-        {
-            Employee emploee = new Employee();
-            return View(emploee);
-        }
+        public IActionResult Create(Employee employee) => View("Edit", new EmployeeViewModel());
 
-        [HttpPost]
-        public IActionResult Create(Employee employee)
-        {
-            if(employee is not null)
-                employee.Id = _Employees.Max(i => i.Id) + 1;
-            _Employees.Add(employee);
-            return View("Index", _Employees);
-        }
-
+        #region Edit
         public IActionResult Edit(int id)
         {
-            var emploee = _Employees.FirstOrDefault(e => e.Id == id);
-            if (emploee is not null)
-                return View(emploee);
+            if (id <= 0) return BadRequest();
+            var employee = _Employees.Details(id);
+            if (employee is not null)
+                return View(new EmployeeViewModel
+                {
+                    Id = employee.Id,
+                    FirstName = employee.FirstName,
+                    LastName = employee.LastName,
+                    Patronymic = employee.Patronymic,
+                    ShortName = employee.ShortName,
+                    Birthday = employee.Birthday,
+                    Sex = employee.Sex,
+                    Number = employee.Number,
+                    InternalPhone = employee.InternalPhone,
+                    HomePhone = employee.HomePhone,
+                    MobilePhone = employee.MobilePhone,
+                    BusinessPhone = employee.BusinessPhone,
+                    Fax = employee.Fax,
+                    Email = employee.Email,
+                    ImagePath = employee.ImagePath,
+                });
             return NotFound();
         }
 
         [HttpPost]
-        public IActionResult Edit(Employee employee)
+        public IActionResult Edit(Employee model)
         {
-            var currentEmployee = _Employees.FirstOrDefault(e => e.Id == employee.Id);
-            if (currentEmployee is not null)
-                _Employees.Remove(currentEmployee);
-            _Employees.Add(employee);
-            _Employees.Sort();
-            return View("Index", _Employees);
-        }
+            if (model is null)
+                throw new ArgumentNullException(nameof(model));
 
+            var employee = new Employee
+            {
+                Id = model.Id,
+                FirstName = model.FirstName,
+                LastName = model.LastName,
+                Patronymic = model.Patronymic,
+                ShortName = model.ShortName,
+                Birthday = model.Birthday,
+                Sex = model.Sex,
+                Number = model.Number,
+                InternalPhone = model.InternalPhone,
+                HomePhone = model.HomePhone,
+                MobilePhone = model.MobilePhone,
+                BusinessPhone = model.BusinessPhone,
+                Fax = model.Fax,
+                Email = model.Email,
+                ImagePath = model.ImagePath,
+            };
+
+            if (employee.Id == 0)
+                _Employees.Create(employee);
+            else
+                _Employees.Edit(employee);
+
+            return RedirectToAction("Index");
+        }
+        #endregion
+
+        #region Delete
         public IActionResult Delete(int id)
         {
-            var emploee = _Employees.FirstOrDefault(e => e.Id == id);
-            if (emploee is not null)
-                _Employees.Remove(emploee);
-            return View("Index", _Employees);
+            if (id <= 0) return BadRequest();
+
+            var employee = _Employees.Details(id);
+
+            if (employee is null)
+                return NotFound();
+
+            return View(new EmployeeViewModel
+            {
+                Id = employee.Id,
+                FirstName = employee.FirstName,
+                LastName = employee.LastName,
+                Patronymic = employee.Patronymic,
+                ShortName = employee.ShortName,
+                Birthday = employee.Birthday,
+                Sex = employee.Sex,
+                Number = employee.Number,
+                InternalPhone = employee.InternalPhone,
+                HomePhone = employee.HomePhone,
+                MobilePhone = employee.MobilePhone,
+                BusinessPhone = employee.BusinessPhone,
+                Fax = employee.Fax,
+                Email = employee.Email,
+                ImagePath = employee.ImagePath
+            });
         }
+
+        [HttpPost]
+        public IActionResult DeleteConfirmed(int id)
+        {
+            _Employees.Delete(id);
+            return RedirectToAction("Index");
+        }
+        #endregion
     }
 }
