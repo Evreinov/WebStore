@@ -15,9 +15,26 @@ namespace WebStore.Controllers
         public IActionResult Details(int id)
         {
             var employee = _Employees.Details(id);
-            if (employee is not null)
-                return View(employee);
-            return NotFound();
+            if (employee is null)
+                return NotFound();
+            return View(new EmployeeViewModel
+            {
+                Id = employee.Id,
+                FirstName = employee.FirstName,
+                LastName = employee.LastName,
+                Patronymic = employee.Patronymic,
+                ShortName = employee.ShortName,
+                Birthday = employee.Birthday,
+                Sex = employee.Sex,
+                Number = employee.Number,
+                InternalPhone = employee.InternalPhone,
+                HomePhone = employee.HomePhone,
+                MobilePhone = employee.MobilePhone,
+                BusinessPhone = employee.BusinessPhone,
+                Fax = employee.Fax,
+                Email = employee.Email,
+                ImagePath = employee.ImagePath
+            });
         }
 
         public IActionResult Create(Employee employee) => View("Edit", new EmployeeViewModel());
