@@ -30,11 +30,20 @@ namespace WebStore.Data
         }
 
         public static IEnumerable<Brand> Brands { get; set; }
-        public static async void LoadBrandssAsync()
+        public static async void LoadBrandsAsync()
         {
             using (FileStream fs = new FileStream($"Data//DataFiles//Brands.json", FileMode.OpenOrCreate))
             {
                 Brands = await JsonSerializer.DeserializeAsync<IEnumerable<Brand>>(fs);
+            }
+        }
+
+        public static IEnumerable<Product> Products { get; set; }
+        public static async void LoadProductsAsync()
+        {
+            using (FileStream fs = new FileStream($"Data//DataFiles//Products.json", FileMode.OpenOrCreate))
+            {
+                Products = await JsonSerializer.DeserializeAsync<IEnumerable<Product>>(fs);
             }
         }
     }

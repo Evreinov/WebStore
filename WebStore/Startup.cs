@@ -20,7 +20,8 @@ namespace WebStore
             // Загрузка тестовых данных в память.
             Data.TestData.LoadEmployeesAsync();
             Data.TestData.LoadSectionsAsync();
-            Data.TestData.LoadBrandssAsync();
+            Data.TestData.LoadBrandsAsync();
+            Data.TestData.LoadProductsAsync();
 #endif
         }
 
