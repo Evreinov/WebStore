@@ -13,11 +13,14 @@ namespace WebStore
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddTransient<IEmployeesData, InMemoryEmployeesData>();
+            services.AddTransient<IProductData, InMemoryProductData>();
             services.AddControllersWithViews().AddRazorRuntimeCompilation();
 
 #if DEBUG
             // Загрузка тестовых данных в память.
             Data.TestData.LoadEmployeesAsync();
+            Data.TestData.LoadSectionsAsync();
+            Data.TestData.LoadBrandssAsync();
 #endif
         }
 
@@ -36,12 +39,6 @@ namespace WebStore
 
             app.UseEndpoints(endpoints =>
             {
-
-                //endpoints.MapGet("/", async context =>
-                //{
-                //    await context.Response.WriteAsync("Hello World!");
-                //});
-
                 // Стандартная маршрутизация используется с контроллерами и представлениями.
                 endpoints.MapControllerRoute(
                     name: "default",

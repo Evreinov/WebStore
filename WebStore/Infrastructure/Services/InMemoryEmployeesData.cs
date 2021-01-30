@@ -12,7 +12,7 @@ namespace WebStore.Infrastructure.Services
         private int _CurrentMaxId;
         public InMemoryEmployeesData()
         {
-            _Employees = Data.TestData.__Employees;
+            _Employees = Data.TestData.Employees;
             _CurrentMaxId = _Employees.DefaultIfEmpty().Max(e => e?.Id ?? 1);
         }
         public IEnumerable<Employee> Get() => _Employees;
