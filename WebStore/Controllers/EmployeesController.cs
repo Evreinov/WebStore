@@ -1,6 +1,4 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using System.Collections.Generic;
-using System.Linq;
 using WebStore.Models;
 using WebStore.Infrastructure.Interfaces;
 using WebStore.ViewModels;
@@ -52,10 +50,12 @@ namespace WebStore.Controllers
         }
 
         [HttpPost]
-        public IActionResult Edit(Employee model)
+        public IActionResult Edit(EmployeeViewModel model)
         {
             if (model is null)
                 throw new ArgumentNullException(nameof(model));
+
+            if (!ModelState.IsValid) return View(model);
 
             var employee = new Employee
             {
