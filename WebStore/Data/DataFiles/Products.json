@@ -1,7 +1,7 @@
 ﻿[
   {
     "Id": 1,
-    "Name": "Белое платье",
+    "Name": "Свитер Lacoste",
     "Price": 1025,
     "ImageUrl": "product1.jpg",
     "Order": 0,
@@ -10,7 +10,7 @@
   },
   {
     "Id": 2,
-    "Name": "Розовое платье",
+    "Name": "Очки в роговой оправе",
     "Price": 1025,
     "ImageUrl": "product2.jpg",
     "Order": 1,
@@ -19,7 +19,7 @@
   },
   {
     "Id": 3,
-    "Name": "Красное платье",
+    "Name": "Черное платье",
     "Price": 1025,
     "ImageUrl": "product3.jpg",
     "Order": 2,
@@ -28,7 +28,7 @@
   },
   {
     "Id": 4,
-    "Name": "Джинсы",
+    "Name": "Черное платье",
     "Price": 1025,
     "ImageUrl": "product4.jpg",
     "Order": 3,
@@ -37,7 +37,7 @@
   },
   {
     "Id": 5,
-    "Name": "Лёгкая майка",
+    "Name": "Свитер синий",
     "Price": 1025,
     "ImageUrl": "product5.jpg",
     "Order": 4,
@@ -46,7 +46,7 @@
   },
   {
     "Id": 6,
-    "Name": "Лёгкое голубое поло",
+    "Name": "Футболка белая",
     "Price": 1025,
     "ImageUrl": "product6.jpg",
     "Order": 5,
@@ -73,7 +73,7 @@
   },
   {
     "Id": 9,
-    "Name": "Красное китайское платье",
+    "Name": "Платье ципао красное",
     "Price": 1025,
     "ImageUrl": "product9.jpg",
     "Order": 8,
@@ -82,7 +82,7 @@
   },
   {
     "Id": 10,
-    "Name": "Женские джинсы",
+    "Name": "Джинсы свободного кроя",
     "Price": 1025,
     "ImageUrl": "product10.jpg",
     "Order": 9,
@@ -91,7 +91,7 @@
   },
   {
     "Id": 11,
-    "Name": "Джинсы женские",
+    "Name": "Джинсы стрейч",
     "Price": 1025,
     "ImageUrl": "product11.jpg",
     "Order": 10,
@@ -100,7 +100,7 @@
   },
   {
     "Id": 12,
-    "Name": "Летний костюм",
+    "Name": "Поло голубое",
     "Price": 1025,
     "ImageUrl": "product12.jpg",
     "Order": 11,
