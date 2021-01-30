@@ -59,19 +59,19 @@
   },
   {
     "Id": 11,
-    "Name": "Диор",
+    "Name": "Dior",
     "Order": 3,
     "ParentId": 7
   },
   {
     "Id": 12,
-    "Name": "Версачи",
+    "Name": "Versace",
     "Order": 4,
     "ParentId": 7
   },
   {
     "Id": 13,
-    "Name": "Армани",
+    "Name": "Armani",
     "Order": 5,
     "ParentId": 7
   },
@@ -83,19 +83,19 @@
   },
   {
     "Id": 15,
-    "Name": "Дольче и Габбана",
+    "Name": "Dolce and Gabbana",
     "Order": 7,
     "ParentId": 7
   },
   {
     "Id": 16,
-    "Name": "Шанель",
+    "Name": "Chanel",
     "Order": 8,
     "ParentId": 7
   },
   {
     "Id": 17,
-    "Name": "Гуччи",
+    "Name": "Gucci",
     "Order": 9,
     "ParentId": 7
   },

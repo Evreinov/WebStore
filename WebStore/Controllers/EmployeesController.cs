@@ -14,25 +14,25 @@ namespace WebStore.Controllers
         //public IActionResult Index() => View(_Employees.Get());
         public IActionResult Index()
         {
-            var employeesViewModel = from employee in _Employees.Get()
-                                     select new EmployeeViewModel()
-                                     {
-                                         Id = employee.Id,
-                                         FirstName = employee.FirstName,
-                                         LastName = employee.LastName,
-                                         Patronymic = employee.Patronymic,
-                                         ShortName = employee.ShortName,
-                                         Birthday = employee.Birthday,
-                                         Sex = employee.Sex,
-                                         Number = employee.Number,
-                                         InternalPhone = employee.InternalPhone,
-                                         HomePhone = employee.HomePhone,
-                                         MobilePhone = employee.MobilePhone,
-                                         BusinessPhone = employee.BusinessPhone,
-                                         Fax = employee.Fax,
-                                         Email = employee.Email,
-                                         ImagePath = employee.ImagePath
-                                     };
+            var employeesViewModel = _Employees.Get()
+                .Select(employee => new EmployeeViewModel()
+                {
+                    Id = employee.Id,
+                    FirstName = employee.FirstName,
+                    LastName = employee.LastName,
+                    Patronymic = employee.Patronymic,
+                    ShortName = employee.ShortName,
+                    Birthday = employee.Birthday,
+                    Sex = employee.Sex,
+                    Number = employee.Number,
+                    InternalPhone = employee.InternalPhone,
+                    HomePhone = employee.HomePhone,
+                    MobilePhone = employee.MobilePhone,
+                    BusinessPhone = employee.BusinessPhone,
+                    Fax = employee.Fax,
+                    Email = employee.Email,
+                    ImagePath = employee.ImagePath
+                });
             return View(employeesViewModel);
         }
 
