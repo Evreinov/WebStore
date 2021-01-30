@@ -3,6 +3,7 @@ using WebStore.Models;
 using WebStore.Infrastructure.Interfaces;
 using WebStore.ViewModels;
 using System;
+using System.Linq;
 
 namespace WebStore.Controllers
 {
@@ -10,7 +11,30 @@ namespace WebStore.Controllers
     {
         private readonly IEmployeesData _Employees;
         public EmployeesController(IEmployeesData EmloyeesData) => _Employees = EmloyeesData;
-        public IActionResult Index() => View(_Employees.Get());
+        //public IActionResult Index() => View(_Employees.Get());
+        public IActionResult Index()
+        {
+            var employeesViewModel = from employee in _Employees.Get()
+                                     select new EmployeeViewModel()
+                                     {
+                                         Id = employee.Id,
+                                         FirstName = employee.FirstName,
+                                         LastName = employee.LastName,
+                                         Patronymic = employee.Patronymic,
+                                         ShortName = employee.ShortName,
+                                         Birthday = employee.Birthday,
+                                         Sex = employee.Sex,
+                                         Number = employee.Number,
+                                         InternalPhone = employee.InternalPhone,
+                                         HomePhone = employee.HomePhone,
+                                         MobilePhone = employee.MobilePhone,
+                                         BusinessPhone = employee.BusinessPhone,
+                                         Fax = employee.Fax,
+                                         Email = employee.Email,
+                                         ImagePath = employee.ImagePath
+                                     };
+            return View(employeesViewModel);
+        }
 
         public IActionResult Details(int id)
         {
