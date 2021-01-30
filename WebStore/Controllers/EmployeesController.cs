@@ -10,8 +10,8 @@ namespace WebStore.Controllers
 {
     public class EmployeesController : Controller
     {
-        private readonly IEmloyeesData _Employees;
-        public EmployeesController(IEmloyeesData EmloyeesData) => _Employees = EmloyeesData;
+        private readonly IEmployeesData _Employees;
+        public EmployeesController(IEmployeesData EmloyeesData) => _Employees = EmloyeesData;
         public IActionResult Index() => View(_Employees.Get());
 
         public IActionResult Details(int id)

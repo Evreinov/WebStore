@@ -6,13 +6,13 @@ using WebStore.Models;
 
 namespace WebStore.Infrastructure.Services
 {
-    public class InMemoryEmployeesData : IEmloyeesData
+    public class InMemoryEmployeesData : IEmployeesData
     {
         private readonly List<Employee> _Employees;
         private int _CurrentMaxId;
         public InMemoryEmployeesData()
         {
-            _Employees = Data.TestData.Employees;
+            _Employees = Data.TestData.__Employees;
             _CurrentMaxId = _Employees.DefaultIfEmpty().Max(e => e?.Id ?? 1);
         }
         public IEnumerable<Employee> Get() => _Employees;

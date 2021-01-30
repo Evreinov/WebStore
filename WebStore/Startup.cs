@@ -12,14 +12,13 @@ namespace WebStore
     {
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddTransient<IEmloyeesData, InMemoryEmployeesData>();
+            services.AddTransient<IEmployeesData, InMemoryEmployeesData>();
             services.AddControllersWithViews().AddRazorRuntimeCompilation();
 
 #if DEBUG
             // Загрузка тестовых данных в память.
-            Data.TestData.Load();
+            Data.TestData.LoadEmployeesAsync();
 #endif
-
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
