@@ -21,6 +21,13 @@ namespace WebStore.Data
         }
 
         public static IEnumerable<Section> Sections { get; set; }
+        public static void LoadSections()
+        {
+            using (StreamReader sr = new StreamReader($"Data//DataFiles//Sections.json"))
+            {
+                Sections = JsonSerializer.Deserialize<IEnumerable<Section>>(sr.ReadToEnd());
+            }
+        }
         public static async void LoadSectionsAsync()
         {
             using (FileStream fs = new FileStream($"Data//DataFiles//Sections.json", FileMode.OpenOrCreate))
@@ -30,6 +37,13 @@ namespace WebStore.Data
         }
 
         public static IEnumerable<Brand> Brands { get; set; }
+        public static void LoadBrands()
+        {
+            using (StreamReader sr = new StreamReader($"Data//DataFiles//Brands.json"))
+            {
+                Brands = JsonSerializer.Deserialize<IEnumerable<Brand>>(sr.ReadToEnd());
+            }
+        }
         public static async void LoadBrandsAsync()
         {
             using (FileStream fs = new FileStream($"Data//DataFiles//Brands.json", FileMode.OpenOrCreate))
@@ -39,6 +53,13 @@ namespace WebStore.Data
         }
 
         public static IEnumerable<Product> Products { get; set; }
+        public static void LoadProducts()
+        {
+            using (StreamReader sr = new StreamReader($"Data//DataFiles//Products.json"))
+            {
+                Products = JsonSerializer.Deserialize<IEnumerable<Product>>(sr.ReadToEnd());
+            }
+        }
         public static async void LoadProductsAsync()
         {
             using (FileStream fs = new FileStream($"Data//DataFiles//Products.json", FileMode.OpenOrCreate))
