@@ -31,5 +31,15 @@ namespace WebStore.ViewModels
         /// Список дочерних секций
         /// </summary>
         public List<SectionViewModel> ChildSections { get; } = new();
+
+        /// <summary>
+        /// Количество продуктов данной секции
+        /// </summary>
+        public int ProductsCount { get; set; }
+
+        /// <summary>
+        /// Количество товаров вместе с дочерними
+        /// </summary>
+        public int TotalProductsCount => ProductsCount + ChildSections.Sum(c => c.TotalProductsCount);
     }
 }
