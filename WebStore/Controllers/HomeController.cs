@@ -1,33 +1,27 @@
-﻿using System.Collections.Generic;
-using Microsoft.AspNetCore.Mvc;
-using WebStore.Models;
-
+﻿using Microsoft.AspNetCore.Mvc;
 
 namespace WebStore.Controllers
 {
     public class HomeController : Controller
     {
-        private List<Employee> __employees = new List<Employee>();
+        public IActionResult Index() => View();
 
-        public HomeController()
-        {
-#if DEBUG
-            new WebStore.AppData.InMemoryData().Load(ref __employees);
-#endif
-        }
-        public IActionResult Index()
-        {
-            return View();
-        }
+        public IActionResult Shop() => View();
 
-        public IActionResult Employees()
-        {
-            return View(__employees);
-        }
+        public IActionResult ProductDetails() => View();
 
-        public IActionResult DetailsEmployee (int id)
-        {
-            return View(__employees.Find(x => x.Id == id));
-        }
+        public IActionResult CheckOut() => View();
+
+        public IActionResult Cart() => View();
+
+        public IActionResult Login() => View();
+
+        public IActionResult Blog() => View();
+
+        public IActionResult BlogSingle() => View();
+
+        public IActionResult Error404() => View();
+
+        public IActionResult ContactUs() => View();
     }
 }
