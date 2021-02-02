@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using WebStore.Domain.Entities.Base;
 using WebStore.Domain.Entities.Base.Interfaces;
 
@@ -60,6 +61,10 @@ namespace WebStore.Domain.Entities
         public CommentStatus CommentStatus { get; set; } 
 
         /// <summary>
+        /// Комментарии к посту.
+        /// </summary>
+        public IEnumerable<Comment> Comments { get; set; }
+        /// <summary>
         /// Количество комментариев
         /// </summary>
         public int CommentCount { get; set; }
@@ -68,5 +73,10 @@ namespace WebStore.Domain.Entities
         /// Адрес заглавной картинки записи
         /// </summary>
         public string ImageUrl { get; set; }
+
+        /// <summary>
+        /// Райтинг записи
+        /// </summary>
+        public IEnumerable<Rate> Rate { get; set; }
     }
 }
