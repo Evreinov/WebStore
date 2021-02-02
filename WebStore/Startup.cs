@@ -21,6 +21,7 @@ namespace WebStore
             services.AddTransient<WebStoreDbInitializer>();
 
             services.AddTransient<IEmployeesData, InMemoryEmployeesData>();
+            TestData.LoadEmployeesAsync();
             //services.AddTransient<IProductData, InMemoryProductData>();
             services.AddTransient<IProductData, SqlProductData>();
             services.AddControllersWithViews().AddRazorRuntimeCompilation();
