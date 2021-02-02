@@ -1,0 +1,16 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@model IEnumerable<WebStore.Models.Employee>
+
+<div class="content">
+    <div class="list">
+        <h3>Сотрудники</h3>
+        @foreach (var employee in Model)
+        {
+            @Html.ActionLink($"{employee.LastName} {employee.FirstName} {employee.Patronymic}, {(DateTime.Now.Year - employee.Birthday.Year)}",
+         "DetailsEmployee",
+         new { id = employee.Id })<br />
+        }
+    </div>
+</div>

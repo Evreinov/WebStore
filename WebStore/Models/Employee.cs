@@ -1,12 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
 
 namespace WebStore.Models
 {
     /// <summary>
     /// Сотрудник - продавец
     /// </summary>
-    public class Employee : IComparable<Employee>
+    public class Employee
     {
         /// <summary>
         /// Идентификатор
@@ -68,10 +67,5 @@ namespace WebStore.Models
         /// Путь к фотографии
         /// </summary>
         public string ImagePath { get; set; }
-
-        public int CompareTo(Employee other)
-        {
-            return this.Id.CompareTo(other.Id);
-        }
     }
 }
