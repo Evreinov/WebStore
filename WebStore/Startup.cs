@@ -18,7 +18,10 @@ namespace WebStore
 
 #if DEBUG
 
-            Data.TestData.Load();
+            Data.TestData.LoadBrandsAsync();
+            Data.TestData.LoadEmployeesAsync();
+            Data.TestData.LoadProductsAsync();
+            Data.TestData.LoadSectionsAsync();
 
 #endif
         }
