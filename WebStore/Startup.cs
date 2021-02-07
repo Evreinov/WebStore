@@ -1,4 +1,4 @@
-﻿using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
@@ -17,11 +17,9 @@ namespace WebStore
             services.AddControllersWithViews().AddRazorRuntimeCompilation();
 
 #if DEBUG
-            // Загрузка тестовых данных в память.
-            Data.TestData.LoadEmployeesAsync();
-            Data.TestData.LoadSectionsAsync();
-            Data.TestData.LoadBrandsAsync();
-            Data.TestData.LoadProductsAsync();
+
+            Data.TestData.Load();
+
 #endif
         }
 
@@ -33,13 +31,15 @@ namespace WebStore
                 app.UseBrowserLink();
             }
 
-            // Включение обслуживания статических файлов.
             app.UseStaticFiles();
 
             app.UseRouting();
 
+            app.UseStaticFiles();
+
             app.UseEndpoints(endpoints =>
             {
+
                 // Стандартная маршрутизация используется с контроллерами и представлениями.
                 endpoints.MapControllerRoute(
                     name: "default",
