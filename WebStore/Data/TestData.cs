@@ -1,42 +1,49 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Text.Json;
 using WebStore.Models;
+using System.Threading.Tasks;
+using WebStore.Domain.Entities;
 
 namespace WebStore.Data
 {
     public static class TestData
     {
-        public static List<Employee> Employees 
-        { 
-            get;
-            set;
+        public static List<Employee> Employees { get; set; }
+        public static async void LoadEmployeesAsync()
+        {
+            using (FileStream fs = new FileStream($"Data//DataFiles//Employees.json", FileMode.OpenOrCreate))
+            {
+                Employees = await JsonSerializer.DeserializeAsync<List<Employee>>(fs);
+            }
         }
 
-        public static void Load()
+        public static IEnumerable<Section> Sections { get; set; }
+        public static async void LoadSectionsAsync()
         {
-            if (Employees is null || Employees.Count == 0)
+            using (FileStream fs = new FileStream($"Data//DataFiles//Sections.json", FileMode.OpenOrCreate))
             {
-                Employees = Enumerable.Range(1, 15)
-                    .Select(i => new Employee
-                    {
-                        Id = i,
-                        FirstName = $"Имя{i}",
-                        LastName = $"Фамилия{i}",
-                        Patronymic = $"Отчество{i}",
-                        ShortName = $"Фамилия{i} И. О.",
-                        Birthday = DateTime.Now.AddMonths(i * 2 - 560),
-                        Sex = i % 2 == 0 ? 0 : 1,
-                        Number = i.ToString("D5"),
-                        InternalPhone = $"1{i:D2}",
-                        HomePhone = $"+712345678{i:D2}",
-                        MobilePhone = $"+712345678{i:D2}",
-                        BusinessPhone = $"+712345678{i:D2}",
-                        Fax = $"+712345678{i:D2}",
-                        Email = $"user{i}@supermail.ru",
-                        ImagePath = i % 2 == 0 ? $"~/img/profile_female.png" : $"~/img/profile_male.png"
-                    })
-                    .ToList();
+                Sections = await JsonSerializer.DeserializeAsync<IEnumerable<Section>>(fs);
+            }
+        }
+
+        public static IEnumerable<Brand> Brands { get; set; }
+        public static async void LoadBrandsAsync()
+        {
+            using (FileStream fs = new FileStream($"Data//DataFiles//Brands.json", FileMode.OpenOrCreate))
+            {
+                Brands = await JsonSerializer.DeserializeAsync<IEnumerable<Brand>>(fs);
+            }
+        }
+
+        public static IEnumerable<Product> Products { get; set; }
+        public static async void LoadProductsAsync()
+        {
+            using (FileStream fs = new FileStream($"Data//DataFiles//Products.json", FileMode.OpenOrCreate))
+            {
+                Products = await JsonSerializer.DeserializeAsync<IEnumerable<Product>>(fs);
             }
         }
     }

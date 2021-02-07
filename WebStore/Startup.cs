@@ -12,13 +12,15 @@ namespace WebStore
     {
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddTransient<IEmloyeesData, InMemoryEmployeesData>();
+            services.AddTransient<IEmployeesData, InMemoryEmployeesData>();
+            services.AddTransient<IProductData, InMemoryProductData>();
             services.AddControllersWithViews().AddRazorRuntimeCompilation();
 
 #if DEBUG
-            Data.TestData.Load();
-#endif
 
+            Data.TestData.Load();
+
+#endif
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
@@ -37,6 +39,8 @@ namespace WebStore
 
             app.UseEndpoints(endpoints =>
             {
+
+                // Стандартная маршрутизация используется с контроллерами и представлениями.
                 endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");

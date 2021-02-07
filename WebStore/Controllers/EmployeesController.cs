@@ -1,25 +1,64 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using System.Collections.Generic;
-using System.Linq;
 using WebStore.Models;
 using WebStore.Infrastructure.Interfaces;
 using WebStore.ViewModels;
 using System;
+using System.Linq;
 
 namespace WebStore.Controllers
 {
     public class EmployeesController : Controller
     {
-        private readonly IEmloyeesData _Employees;
-        public EmployeesController(IEmloyeesData EmloyeesData) => _Employees = EmloyeesData;
-        public IActionResult Index() => View(_Employees.Get());
+        private readonly IEmployeesData _Employees;
+        public EmployeesController(IEmployeesData EmloyeesData) => _Employees = EmloyeesData;
+        //public IActionResult Index() => View(_Employees.Get());
+        public IActionResult Index()
+        {
+            var employeesViewModel = _Employees.Get()
+                .Select(employee => new EmployeeViewModel()
+                {
+                    Id = employee.Id,
+                    FirstName = employee.FirstName,
+                    LastName = employee.LastName,
+                    Patronymic = employee.Patronymic,
+                    ShortName = employee.ShortName,
+                    Birthday = employee.Birthday,
+                    Sex = employee.Sex,
+                    Number = employee.Number,
+                    InternalPhone = employee.InternalPhone,
+                    HomePhone = employee.HomePhone,
+                    MobilePhone = employee.MobilePhone,
+                    BusinessPhone = employee.BusinessPhone,
+                    Fax = employee.Fax,
+                    Email = employee.Email,
+                    ImagePath = employee.ImagePath
+                });
+            return View(employeesViewModel);
+        }
 
         public IActionResult Details(int id)
         {
             var employee = _Employees.Details(id);
-            if (employee is not null)
-                return View(employee);
-            return NotFound();
+            if (employee is null)
+                return NotFound();
+            return View(new EmployeeViewModel
+            {
+                Id = employee.Id,
+                FirstName = employee.FirstName,
+                LastName = employee.LastName,
+                Patronymic = employee.Patronymic,
+                ShortName = employee.ShortName,
+                Birthday = employee.Birthday,
+                Sex = employee.Sex,
+                Number = employee.Number,
+                InternalPhone = employee.InternalPhone,
+                HomePhone = employee.HomePhone,
+                MobilePhone = employee.MobilePhone,
+                BusinessPhone = employee.BusinessPhone,
+                Fax = employee.Fax,
+                Email = employee.Email,
+                ImagePath = employee.ImagePath
+            });
         }
 
         public IActionResult Create(Employee employee) => View("Edit", new EmployeeViewModel());
@@ -52,10 +91,12 @@ namespace WebStore.Controllers
         }
 
         [HttpPost]
-        public IActionResult Edit(Employee model)
+        public IActionResult Edit(EmployeeViewModel model)
         {
             if (model is null)
                 throw new ArgumentNullException(nameof(model));
+
+            if (!ModelState.IsValid) return View(model);
 
             var employee = new Employee
             {

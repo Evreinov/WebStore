@@ -6,7 +6,7 @@ using WebStore.Models;
 
 namespace WebStore.Infrastructure.Services
 {
-    public class InMemoryEmployeesData : IEmloyeesData
+    public class InMemoryEmployeesData : IEmployeesData
     {
         private readonly List<Employee> _Employees;
         private int _CurrentMaxId;
