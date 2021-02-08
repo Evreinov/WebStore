@@ -4,36 +4,26 @@ using WebStore.Infrastructure.Interfaces;
 using WebStore.ViewModels;
 using System;
 using System.Linq;
+using AutoMapper;
+using System.Collections.Generic;
 
 namespace WebStore.Controllers
 {
     public class EmployeesController : Controller
-    {
+    { 
         private readonly IEmployeesData _Employees;
+
+        // Создание конфигурации сопоставления и настройка AutoMapper'а для Employee in EmployeeViewModel
+        private readonly Mapper mapperViewModel = new Mapper(new MapperConfiguration(cfg => cfg.CreateMap<Employee, EmployeeViewModel>()));
+
+        // Создание конфигурации сопоставления и настройка AutoMapper'а для EmployeeViewModel in Employee
+        private readonly Mapper omapperModel = new Mapper(new MapperConfiguration(cfg => cfg.CreateMap<EmployeeViewModel, Employee>()));
+
         public EmployeesController(IEmployeesData EmloyeesData) => _Employees = EmloyeesData;
-        //public IActionResult Index() => View(_Employees.Get());
+
         public IActionResult Index()
         {
-            var employeesViewModel = _Employees.Get()
-                .Select(employee => new EmployeeViewModel()
-                {
-                    Id = employee.Id,
-                    FirstName = employee.FirstName,
-                    LastName = employee.LastName,
-                    Patronymic = employee.Patronymic,
-                    ShortName = employee.ShortName,
-                    Birthday = employee.Birthday,
-                    Sex = employee.Sex,
-                    Number = employee.Number,
-                    InternalPhone = employee.InternalPhone,
-                    HomePhone = employee.HomePhone,
-                    MobilePhone = employee.MobilePhone,
-                    BusinessPhone = employee.BusinessPhone,
-                    Fax = employee.Fax,
-                    Email = employee.Email,
-                    ImagePath = employee.ImagePath
-                });
-            return View(employeesViewModel);
+            return View(mapperViewModel.Map<IEnumerable<EmployeeViewModel>>(_Employees.Get()));
         }
 
         public IActionResult Details(int id)
@@ -41,24 +31,7 @@ namespace WebStore.Controllers
             var employee = _Employees.Details(id);
             if (employee is null)
                 return NotFound();
-            return View(new EmployeeViewModel
-            {
-                Id = employee.Id,
-                FirstName = employee.FirstName,
-                LastName = employee.LastName,
-                Patronymic = employee.Patronymic,
-                ShortName = employee.ShortName,
-                Birthday = employee.Birthday,
-                Sex = employee.Sex,
-                Number = employee.Number,
-                InternalPhone = employee.InternalPhone,
-                HomePhone = employee.HomePhone,
-                MobilePhone = employee.MobilePhone,
-                BusinessPhone = employee.BusinessPhone,
-                Fax = employee.Fax,
-                Email = employee.Email,
-                ImagePath = employee.ImagePath
-            });
+            return View(mapperViewModel.Map<EmployeeViewModel>(employee));
         }
 
         public IActionResult Create(Employee employee) => View("Edit", new EmployeeViewModel());
@@ -69,24 +42,7 @@ namespace WebStore.Controllers
             if (id <= 0) return BadRequest();
             var employee = _Employees.Details(id);
             if (employee is not null)
-                return View(new EmployeeViewModel
-                {
-                    Id = employee.Id,
-                    FirstName = employee.FirstName,
-                    LastName = employee.LastName,
-                    Patronymic = employee.Patronymic,
-                    ShortName = employee.ShortName,
-                    Birthday = employee.Birthday,
-                    Sex = employee.Sex,
-                    Number = employee.Number,
-                    InternalPhone = employee.InternalPhone,
-                    HomePhone = employee.HomePhone,
-                    MobilePhone = employee.MobilePhone,
-                    BusinessPhone = employee.BusinessPhone,
-                    Fax = employee.Fax,
-                    Email = employee.Email,
-                    ImagePath = employee.ImagePath,
-                });
+                return View(mapperViewModel.Map<EmployeeViewModel>(employee));
             return NotFound();
         }
 
@@ -98,24 +54,7 @@ namespace WebStore.Controllers
 
             if (!ModelState.IsValid) return View(model);
 
-            var employee = new Employee
-            {
-                Id = model.Id,
-                FirstName = model.FirstName,
-                LastName = model.LastName,
-                Patronymic = model.Patronymic,
-                ShortName = model.ShortName,
-                Birthday = model.Birthday,
-                Sex = model.Sex,
-                Number = model.Number,
-                InternalPhone = model.InternalPhone,
-                HomePhone = model.HomePhone,
-                MobilePhone = model.MobilePhone,
-                BusinessPhone = model.BusinessPhone,
-                Fax = model.Fax,
-                Email = model.Email,
-                ImagePath = model.ImagePath,
-            };
+            var employee = omapperModel.Map<Employee>(model);
 
             if (employee.Id == 0)
                 _Employees.Create(employee);
@@ -136,24 +75,7 @@ namespace WebStore.Controllers
             if (employee is null)
                 return NotFound();
 
-            return View(new EmployeeViewModel
-            {
-                Id = employee.Id,
-                FirstName = employee.FirstName,
-                LastName = employee.LastName,
-                Patronymic = employee.Patronymic,
-                ShortName = employee.ShortName,
-                Birthday = employee.Birthday,
-                Sex = employee.Sex,
-                Number = employee.Number,
-                InternalPhone = employee.InternalPhone,
-                HomePhone = employee.HomePhone,
-                MobilePhone = employee.MobilePhone,
-                BusinessPhone = employee.BusinessPhone,
-                Fax = employee.Fax,
-                Email = employee.Email,
-                ImagePath = employee.ImagePath
-            });
+            return View(mapperViewModel.Map<EmployeeViewModel>(employee));
         }
 
         [HttpPost]
