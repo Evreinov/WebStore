@@ -1,4 +1,5 @@
-﻿using WebStore.Domain.Entities.Base;
+﻿using System.ComponentModel.DataAnnotations.Schema;
+using WebStore.Domain.Entities.Base;
 using WebStore.Domain.Entities.Base.Interfaces;
 
 namespace WebStore.Domain.Entities
@@ -13,10 +14,14 @@ namespace WebStore.Domain.Entities
         /// Номер секции
         /// </summary>
         public int SectionId { get; set; }
+        [ForeignKey(nameof(SectionId))]
+        public Section Section { get; set; }
         /// <summary>
         /// Номер бренда
         /// </summary>
         public int? BrandId { get; set; }
+        [ForeignKey(nameof(BrandId))]
+        public Brand Brand { get; set; }
         /// <summary>
         /// Адрес картинки
         /// </summary>
@@ -24,6 +29,7 @@ namespace WebStore.Domain.Entities
         /// <summary>
         /// Цена
         /// </summary>
+        [Column(TypeName = "decimal(18,2)")] // точность decimal в базе данных
         public decimal Price { get; set; }
     }
 }
