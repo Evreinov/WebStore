@@ -1,4 +1,4 @@
-﻿using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
@@ -37,13 +37,15 @@ namespace WebStore
                 app.UseBrowserLink();
             }
 
-            // Включение обслуживания статических файлов.
             app.UseStaticFiles();
 
             app.UseRouting();
 
+            app.UseStaticFiles();
+
             app.UseEndpoints(endpoints =>
             {
+
                 // Стандартная маршрутизация используется с контроллерами и представлениями.
                 endpoints.MapControllerRoute(
                     name: "default",
