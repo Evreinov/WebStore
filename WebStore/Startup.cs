@@ -37,7 +37,7 @@ namespace WebStore
                 cfg.Password.RequiredUniqueChars = 3;
 #endif
                 cfg.User.RequireUniqueEmail = false;
-                cfg.User.AllowedUserNameCharacters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
+                cfg.User.AllowedUserNameCharacters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ_1234567890";
 
                 cfg.Lockout.AllowedForNewUsers = false;
                 cfg.Lockout.MaxFailedAccessAttempts = 10;
