@@ -48,7 +48,7 @@ namespace WebStore
             {
                 cfg.Cookie.Name = "WebStore";
                 cfg.Cookie.HttpOnly = true;
-                cfg.Cookie.Expiration = TimeSpan.FromDays(10);
+                cfg.ExpireTimeSpan = TimeSpan.FromDays(10);
 
                 cfg.LoginPath = "/Account/Login";
                 cfg.LogoutPath = "/Account/Logout";
