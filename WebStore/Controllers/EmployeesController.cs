@@ -6,9 +6,12 @@ using System;
 using System.Linq;
 using AutoMapper;
 using System.Collections.Generic;
+using Microsoft.AspNetCore.Authorization;
+using WebStore.Domain.Identity;
 
 namespace WebStore.Controllers
 {
+    [Authorize]
     public class EmployeesController : Controller
     { 
         private readonly IEmployeesData _Employees;
@@ -37,6 +40,7 @@ namespace WebStore.Controllers
         public IActionResult Create(Employee employee) => View("Edit", new EmployeeViewModel());
 
         #region Edit
+        [Authorize (Roles = Role.Administrators)]
         public IActionResult Edit(int id)
         {
             if (id <= 0) return BadRequest();
@@ -66,6 +70,7 @@ namespace WebStore.Controllers
         #endregion
 
         #region Delete
+        [Authorize(Roles = Role.Administrators)]
         public IActionResult Delete(int id)
         {
             if (id <= 0) return BadRequest();
