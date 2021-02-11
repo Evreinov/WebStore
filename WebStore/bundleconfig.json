@@ -3,16 +3,14 @@
     "outputFileName": "wwwroot/css/styles.css",
     "inputFiles": [
       "wwwroot/css/main.css",
+      "wwwroot/css/price-range.css",
       "wwwroot/css/animate.css",
-      "wwwroot/css/responsive.css",
-      "wwwroot/css/price-range.css"
+      "wwwroot/css/responsive.css"
     ]
   },
   {
     "outputFileName": "wwwroot/js/scripts.js",
     "inputFiles": [
-      "wwwroot/js/contact.js",
-      "wwwroot/js/gmaps.js",
       "wwwroot/js/price-range.js",
       "wwwroot/js/main.js"
     ],
