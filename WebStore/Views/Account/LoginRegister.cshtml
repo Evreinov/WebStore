@@ -1,0 +1,22 @@
+﻿@model LoginRegisterViewModel
+@{
+    ViewBag.Title = "Вход в систему";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<section id="form">
+    <!--form-->
+    <div class="container">
+        <div class="row">
+
+            @{await Html.RenderPartialAsync("Partial/_Login", Model.LoginViewModel);}
+
+            <div class="col-sm-1">
+                <h2 class="or">OR</h2>
+            </div>
+
+            @{await Html.RenderPartialAsync("Partial/_Register", Model.RegisterUserViewModel);}
+
+        </div>
+    </div>
+</section>

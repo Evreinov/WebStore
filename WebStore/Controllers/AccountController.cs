@@ -24,6 +24,9 @@ namespace WebStore.Controllers
             _Logger = Logger;
         }
 
+        [AllowAnonymous]
+        public IActionResult LoginRegister() => View(new LoginRegisterViewModel());
+
         #region Register
         [AllowAnonymous]
         public IActionResult Register() => View(new RegisterUserViewModel());
@@ -53,7 +56,7 @@ namespace WebStore.Controllers
                 return RedirectToAction("Index", "Home");
             }
 
-            _Logger.LogWarning("В процессе регистрации пользователя {0} возникли ошибки {1}", 
+            _Logger.LogWarning("В процессе регистрации пользователя {0} возникли ошибки {1}",
                 Model.UserName,
                 string.Join(", ", registration_result.Errors.Select(e => e.Description)));
 
@@ -79,11 +82,11 @@ namespace WebStore.Controllers
                 Model.Password,
                 Model.RememberMe,
 #if DEBUG
-                false
+                        false
 #else
-                true
+                        true
 #endif
-                );
+                        );
 
             if (login_result.Succeeded)
             {
