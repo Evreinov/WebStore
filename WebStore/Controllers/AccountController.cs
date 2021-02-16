@@ -101,9 +101,9 @@ namespace WebStore.Controllers
 
             return View(Model);
         }
-        #endregion
+            #endregion
 
-        [ActionName("Logout")]
+            [ActionName("Logout")]
         public async Task<IActionResult> LogoutAsync()
         {
             await _SignInManager.SignOutAsync();

@@ -7,16 +7,17 @@
 <section id="form">
     <!--form-->
     <div class="container">
-        <div class="row">
+        <div class="row" id="dynamicContentContainer">
 
-            @{await Html.RenderPartialAsync("Partial/_Login", Model.LoginViewModel);}
+            @await Html.PartialAsync("Partial/_Login", Model.LoginViewModel)
 
             <div class="col-sm-1">
-                <h2 class="or">OR</h2>
+                <h2 class="or">ИЛИ</h2>
             </div>
 
-            @{await Html.RenderPartialAsync("Partial/_Register", Model.RegisterUserViewModel);}
+           @await Html.PartialAsync("Partial/_Register", Model.RegisterUserViewModel)
 
         </div>
+
     </div>
 </section>

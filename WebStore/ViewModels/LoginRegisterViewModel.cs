@@ -7,7 +7,19 @@ namespace WebStore.ViewModels
 {
     public class LoginRegisterViewModel
     {
-        public LoginViewModel LoginViewModel { get; set; }
-        public RegisterUserViewModel RegisterUserViewModel { get; set; }
+        private readonly LoginViewModel _LoginViewModel;
+        private readonly RegisterUserViewModel _RegisterUserViewModel;
+        public LoginRegisterViewModel() 
+        {
+            _LoginViewModel = new LoginViewModel();
+            _RegisterUserViewModel = new RegisterUserViewModel();
+        }
+        public LoginRegisterViewModel( LoginViewModel LoginViewModel, RegisterUserViewModel RegisterUserViewModel)
+        {
+            _LoginViewModel = LoginViewModel;
+            _RegisterUserViewModel = RegisterUserViewModel;
+        }
+        public LoginViewModel LoginViewModel => _LoginViewModel;
+        public RegisterUserViewModel RegisterUserViewModel => _RegisterUserViewModel;
     }
 }
