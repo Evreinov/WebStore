@@ -1,12 +1,15 @@
-﻿@{
-    ViewBag.Title = "ProductDetails";
+﻿@model ProductViewModel
+@{
+    ViewBag.Title = $"Информация о товаре {Model.Name}";
 }
 
 <section>
     <div class="container">
         <div class="row">
             <div class="col-sm-3">
+
                 <partial name="Partial/_LeftSideBar" />
+
             </div>
 
             <div class="col-sm-9 padding-right">
@@ -52,7 +55,7 @@
                     <div class="col-sm-7">
                         <div class="product-information">
                             <!--/product-information-->
-                            <img src="@Model.ImageUrl" class="newarrival" alt="@Model.Name" />
+                            <img src="~/images/shop/@Model.ImageUrl" class="newarrival" alt="@Model.Name" />
                             <h2>@Model.Name</h2>
                             <p>Артикул: @Model.Id.ToString("00000000")</p>
                             <img src="~/images/product-details/rating.png" alt="" />
@@ -67,7 +70,7 @@
                             </span>
                             <p><b>Availability:</b> In Stock</p>
                             <p><b>Condition:</b> New</p>
-                            <p><b>Brand:</b> @Model.Brand</p>
+                            <p><b>Brand:</b> @Model?.Brand</p>
                             <a href=""><img src="~/images/product-details/share.png" class="share img-responsive" alt="" /></a>
                         </div><!--/product-information-->
                     </div>
