@@ -17,7 +17,7 @@
                     <!--product-details-->
                     <div class="col-sm-5">
                         <div class="view-product">
-                            <img src="~/images/product-details/1.jpg" alt="" />
+                            <img src="~/images/shop/@Model.ImageUrl" alt="@Model.Name" />
                             <h3>ZOOM</h3>
                         </div>
                         <div id="similar-product" class="carousel slide" data-ride="carousel">
@@ -55,7 +55,7 @@
                     <div class="col-sm-7">
                         <div class="product-information">
                             <!--/product-information-->
-                            <img src="~/images/shop/@Model.ImageUrl" class="newarrival" alt="@Model.Name" />
+                            <img src="~/images/product-details/new.jpg" class="newarrival" alt="" />
                             <h2>@Model.Name</h2>
                             <p>Артикул: @Model.Id.ToString("00000000")</p>
                             <img src="~/images/product-details/rating.png" alt="" />
