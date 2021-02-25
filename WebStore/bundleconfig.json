@@ -1,0 +1,23 @@
+[
+  {
+    "outputFileName": "wwwroot/css/styles.css",
+    "inputFiles": [
+      "wwwroot/css/main.css",
+      "wwwroot/css/price-range.css",
+      "wwwroot/css/animate.css",
+      "wwwroot/css/responsive.css"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/js/scripts.js",
+    "inputFiles": [
+      "wwwroot/js/price-range.js",
+      "wwwroot/js/main.js"
+    ],
+    "minify": {
+      "enabled": true,
+      "renameLocals": true,
+      "gzip": true
+    }
+  }
+]

@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Identity;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System;
@@ -10,6 +11,7 @@ using WebStore.ViewModels;
 
 namespace WebStore.Controllers
 {
+    [Authorize]
     public class AccountController : Controller
     {
         private readonly UserManager<User> _UserManager;
@@ -22,9 +24,14 @@ namespace WebStore.Controllers
             _Logger = Logger;
         }
 
+        [AllowAnonymous]
+        public IActionResult LoginRegister() => View(new LoginRegisterViewModel());
+
         #region Register
+        [AllowAnonymous]
         public IActionResult Register() => View(new RegisterUserViewModel());
 
+        [AllowAnonymous]
         [HttpPost, ValidateAntiForgeryToken, ActionName("Register")]
         public async Task<IActionResult> RegisterAsync(RegisterUserViewModel Model)
         {
@@ -40,6 +47,8 @@ namespace WebStore.Controllers
             var registration_result = await _UserManager.CreateAsync(user, Model.Password);
             if (registration_result.Succeeded)
             {
+                await _UserManager.AddToRoleAsync(user, Role.Users);
+
                 _Logger.LogInformation("Пользователь {0} успешно зарегистрирован", Model.UserName);
 
                 await _SignInManager.SignInAsync(user, false);
@@ -47,7 +56,7 @@ namespace WebStore.Controllers
                 return RedirectToAction("Index", "Home");
             }
 
-            _Logger.LogWarning("В процессе регистрации пользователя {0} возникли ошибки {1}", 
+            _Logger.LogWarning("В процессе регистрации пользователя {0} возникли ошибки {1}",
                 Model.UserName,
                 string.Join(", ", registration_result.Errors.Select(e => e.Description)));
 
@@ -59,8 +68,10 @@ namespace WebStore.Controllers
         #endregion
 
         #region Login
+        [AllowAnonymous]
         public IActionResult Login(string ReturnUrl) => View(new LoginViewModel { ReturnUrl = ReturnUrl });
 
+        [AllowAnonymous]
         [HttpPost, ValidateAntiForgeryToken, ActionName("Login")]
         public async Task<IActionResult> LoginAsync(LoginViewModel Model)
         {
@@ -71,11 +82,11 @@ namespace WebStore.Controllers
                 Model.Password,
                 Model.RememberMe,
 #if DEBUG
-                false
+                        false
 #else
-                true
+                        true
 #endif
-                );
+                        );
 
             if (login_result.Succeeded)
             {
@@ -90,9 +101,9 @@ namespace WebStore.Controllers
 
             return View(Model);
         }
-        #endregion
+            #endregion
 
-        [ActionName("Logout")]
+            [ActionName("Logout")]
         public async Task<IActionResult> LogoutAsync()
         {
             await _SignInManager.SignOutAsync();

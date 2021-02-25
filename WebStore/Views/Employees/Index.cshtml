@@ -1,9 +1,14 @@
-﻿@{
+﻿@using WebStore.Domain.Identity;
+@{
     Layout = "_LayoutEmployees";
     ViewData["Title"] = "Список сотрудников";
 }
 @model IEnumerable<EmployeeViewModel>
-@Html.ActionLink("Создать", "Create")
+@if (User.IsInRole(Role.Administrators))
+{
+    @Html.ActionLink("Создать", "Create")
+}
+
 <table class="table">
     <thead>
         <tr>
@@ -45,12 +50,19 @@
                     @Html.DisplayFor(modelItem => item.Birthday)
                 </td>
                 <td>
-                    <a asp-action="Edit" asp-route-id="@item.Id"><i class="fa fa-edit"></i></a> |
-                    <a asp-action="Details" asp-route-id="@item.Id"><i class="fa fa-info"></i></a> |
-                    <a asp-action="Delete" asp-route-id="@item.Id"><i class="fa fa-trash-o"></i></a>
+
+                    <a asp-action="Details" asp-route-id="@item.Id"><i class="fa fa-info"></i></a>
+                    @if (User.IsInRole(Role.Administrators))
+                    {
+                        @: | 
+                        <a asp-action="Edit" asp-route-id="@item.Id"><i class="fa fa-edit"></i></a> 
+                        @: | 
+                        <a asp-action="Delete" asp-route-id="@item.Id"><i class="fa fa-trash-o"></i></a>
+                    }
+
                 </td>
             </tr>
-        }
+}
     </tbody>
 </table>
 
