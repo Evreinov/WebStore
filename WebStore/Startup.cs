@@ -87,7 +87,9 @@ namespace WebStore
 
             app.UseEndpoints(endpoints =>
             {
-
+                endpoints.MapControllerRoute(
+                  name: "areas",
+                  pattern: "{area:exists}/{controller=Home}/{action=Index}/{id?}");
                 // Стандартная маршрутизация используется с контроллерами и представлениями.
                 endpoints.MapControllerRoute(
                     name: "default",
