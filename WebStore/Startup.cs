@@ -21,7 +21,9 @@ namespace WebStore
     {
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddDbContext<WebStoreDB>(opt => opt.UseSqlServer(Configuration.GetConnectionString("WebStoreBD")));
+            services.AddDbContext<WebStoreDB>(opt => 
+            opt.UseSqlServer(Configuration.GetConnectionString("WebStoreBD")).UseLazyLoadingProxies()
+            );
             services.AddTransient<WebStoreDbInitializer>();
 
             services.AddIdentity<User, Role>().AddEntityFrameworkStores<WebStoreDB>()

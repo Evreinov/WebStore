@@ -15,13 +15,13 @@ namespace WebStore.Domain.Entities
         /// </summary>
         public int SectionId { get; set; }
         [ForeignKey(nameof(SectionId))]
-        public Section Section { get; set; }
+        public virtual Section Section { get; set; }
         /// <summary>
         /// Номер бренда
         /// </summary>
         public int? BrandId { get; set; }
         [ForeignKey(nameof(BrandId))]
-        public Brand Brand { get; set; }
+        public virtual Brand Brand { get; set; }
         /// <summary>
         /// Адрес картинки
         /// </summary>

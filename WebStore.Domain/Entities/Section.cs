@@ -12,8 +12,8 @@ namespace WebStore.Domain.Entities
         public int? ParentId { get; set; }
 
         [ForeignKey(nameof(ParentId))] // Указываем вручную первичный ключ
-        public Section Parent { get; set; } // Свойство зависимости
+        public virtual Section Parent { get; set; } // Свойство зависимости
 
-        public ICollection<Product> Products { get; set; } 
+        public virtual ICollection<Product> Products { get; set; } 
     }
 }
