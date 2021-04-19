@@ -8,10 +8,10 @@ namespace WebStore.Domain.Orders
     public class OrderItem : Entity
     {
         [Required]
-        public Order Order { get; set; }
+        public virtual Order Order { get; set; }
 
         [Required]
-        public Product Product { get; set; }
+        public virtual Product Product { get; set; }
 
         [Column(TypeName = "decimal(18,2")]
         public decimal Price { get; set; }

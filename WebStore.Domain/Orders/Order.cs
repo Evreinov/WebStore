@@ -9,7 +9,7 @@ namespace WebStore.Domain.Orders
     public class Order : NamedEntity
     {
         [Required]
-        public User User { get; set; }
+        public virtual User User { get; set; }
 
         [Required]
         public string Phone { get; set; }
@@ -19,6 +19,6 @@ namespace WebStore.Domain.Orders
 
         public DateTime Date { get; set; } = DateTime.Now;
 
-        public ICollection<OrderItem> Items { get; set; } = new HashSet<OrderItem>();
+        public virtual ICollection<OrderItem> Items { get; set; } = new HashSet<OrderItem>();
     }
 }
