@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace WebStore.Models
+namespace WebStore.Domain.Models
 {
     /// <summary>
     /// Сотрудник - продавец

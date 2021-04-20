@@ -10,10 +10,10 @@ using System;
 using WebStore.DAL.Context;
 using WebStore.Data;
 using WebStore.Domain.Identity;
-using WebStore.Infrastructure.Interfaces;
 using WebStore.Infrastructure.Services.InCookies;
 using WebStore.Infrastructure.Services.InMemory;
 using WebStore.Infrastructure.Services.InSQL;
+using WebStore.Interfaces.Services;
 
 namespace WebStore
 {

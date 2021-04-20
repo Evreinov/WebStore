@@ -1,13 +1,12 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using WebStore.Models;
-using WebStore.Infrastructure.Interfaces;
-using WebStore.ViewModels;
 using System;
-using System.Linq;
 using AutoMapper;
 using System.Collections.Generic;
 using Microsoft.AspNetCore.Authorization;
 using WebStore.Domain.Identity;
+using WebStore.Domain.Models;
+using WebStore.Interfaces.Services;
+using WebStore.Domain.ViewModels;
 
 namespace WebStore.Controllers
 {

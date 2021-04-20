@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text.Json;
-using WebStore.Models;
 using System.Threading.Tasks;
 using WebStore.Domain.Entities;
+using WebStore.Domain.Models;
 
 namespace WebStore.Data
 {
