@@ -4,18 +4,19 @@ using System.Linq;
 using WebStore.Domain;
 using WebStore.Domain.Entities;
 using WebStore.Interfaces.Services;
+using WebStore.Services.Data;
 
 namespace WebStore.Infrastructure.Services.InMemory
 {
     public class InMemoryProductData : IProductData
     {
-        public IEnumerable<Brand> GetBrands() => Data.TestData.Brands;
+        public IEnumerable<Brand> GetBrands() => TestData.Brands;
 
-        public IEnumerable<Section> GetSections() => Data.TestData.Sections;
+        public IEnumerable<Section> GetSections() => TestData.Sections;
 
         public IEnumerable<Product> GetProducts(ProductFilter Filter)
         {
-            var query = Data.TestData.Products;
+            var query = TestData.Products;
 
             if (Filter?.SectionId is { } section_id)
                 query = query.Where(product => product.SectionId == section_id);
@@ -26,6 +27,6 @@ namespace WebStore.Infrastructure.Services.InMemory
             return query;
         }
 
-        public Product GetProductById(int id) => Data.TestData.Products.FirstOrDefault(p => p.Id == id);
+        public Product GetProductById(int id) => TestData.Products.FirstOrDefault(p => p.Id == id);
     }
 }

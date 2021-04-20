@@ -3,8 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using WebStore.Domain.Models;
 using WebStore.Interfaces.Services;
+using WebStore.Services.Data;
 
-namespace WebStore.Infrastructure.Services.InMemory
+namespace WebStore.Services.Services.InMemory
 {
     public class InMemoryEmployeesData : IEmployeesData
     {
@@ -12,7 +13,7 @@ namespace WebStore.Infrastructure.Services.InMemory
         private int _CurrentMaxId;
         public InMemoryEmployeesData()
         {
-            _Employees = Data.TestData.Employees;
+            _Employees = TestData.Employees;
             _CurrentMaxId = _Employees.DefaultIfEmpty().Max(e => e?.Id ?? 1);
         }
         public IEnumerable<Employee> Get() => _Employees;

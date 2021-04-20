@@ -10,7 +10,7 @@ using WebStore.Domain.Orders;
 using WebStore.Domain.ViewModels;
 using WebStore.Interfaces.Services;
 
-namespace WebStore.Infrastructure.Services.InSQL
+namespace WebStore.Services.Services.InSQL
 {
     public class SqlOrderService : IOrderService
     {
@@ -53,7 +53,7 @@ namespace WebStore.Infrastructure.Services.InSQL
                     Product = product,
                     Price = product.Price, //здесь можно применить скидки к цене товара в заказе
                     Quantity = cart_item.Quantity,
-                    
+
                 }).ToArray();
             await _db.Orders.AddAsync(order);
 

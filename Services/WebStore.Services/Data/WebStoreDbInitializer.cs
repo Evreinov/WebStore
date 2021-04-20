@@ -2,14 +2,13 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using System;
-using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using WebStore.DAL.Context;
 using WebStore.Domain.Identity;
 
-namespace WebStore.Data
+namespace WebStore.Services.Data
 {
     public class WebStoreDbInitializer
     {
@@ -18,7 +17,7 @@ namespace WebStore.Data
         private readonly UserManager<User> _UserManager;
         private readonly RoleManager<Role> _RoleManager;
 
-        public WebStoreDbInitializer( WebStoreDB db, ILogger<WebStoreDbInitializer> Logger, UserManager<User> UserManager, RoleManager<Role> RoleManager)
+        public WebStoreDbInitializer(WebStoreDB db, ILogger<WebStoreDbInitializer> Logger, UserManager<User> UserManager, RoleManager<Role> RoleManager)
         {
             _db = db;
             _Logger = Logger;
@@ -146,7 +145,7 @@ namespace WebStore.Data
                 {
                     UserName = User.Administrator
                 };
-            
+
 
                 var creation_result = await _UserManager.CreateAsync(admin, User.DefaultAdminPassword);
 
