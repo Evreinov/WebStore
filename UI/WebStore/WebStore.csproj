@@ -22,11 +22,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\WebStore.DAL\WebStore.DAL.csproj" />
-    <ProjectReference Include="..\WebStore.Domain\WebStore.Domain.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
     <Folder Include="Areas\Administrator\Models\" />
   </ItemGroup>
 
@@ -36,6 +31,11 @@
     <None Include="wwwroot\Administrator\js\bootstrap.min.js" />
     <None Include="wwwroot\Administrator\js\custom.js" />
     <None Include="wwwroot\Administrator\js\jquery-1.10.2.js" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\Common\WebStore.Domain\WebStore.Domain.csproj" />
+    <ProjectReference Include="..\..\Services\WebStore.DAL\WebStore.DAL.csproj" />
   </ItemGroup>
 
   <ProjectExtensions><VisualStudio><UserProperties appsettings_1json__JsonSchema="" /></VisualStudio></ProjectExtensions>
