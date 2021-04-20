@@ -11,6 +11,6 @@ namespace WebStore.Domain.Entities
         [Column("Order")] // Указываем явно название столбца таблицы, при отсутсвии атрибут называется, аналогично названию свойству.
         public int Order { get; set; }
 
-        public ICollection<Product> Products { get; set; }
+        public virtual ICollection<Product> Products { get; set; }
     }
 }

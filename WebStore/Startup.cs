@@ -21,7 +21,9 @@ namespace WebStore
     {
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddDbContext<WebStoreDB>(opt => opt.UseSqlServer(Configuration.GetConnectionString("WebStoreBD")));
+            services.AddDbContext<WebStoreDB>(opt => 
+            opt.UseSqlServer(Configuration.GetConnectionString("WebStoreBD")).UseLazyLoadingProxies()
+            );
             services.AddTransient<WebStoreDbInitializer>();
 
             services.AddIdentity<User, Role>().AddEntityFrameworkStores<WebStoreDB>()
@@ -63,6 +65,7 @@ namespace WebStore
             //services.AddTransient<IProductData, InMemoryProductData>();
             services.AddTransient<IProductData, SqlProductData>();
             services.AddTransient<ICartService, InCookiesCartService>();
+            services.AddTransient<IOrderService, SqlOrderService>();
             services.AddControllersWithViews().AddRazorRuntimeCompilation();
         }
 
@@ -87,7 +90,9 @@ namespace WebStore
 
             app.UseEndpoints(endpoints =>
             {
-
+                endpoints.MapControllerRoute(
+                  name: "areas",
+                  pattern: "{area:exists}/{controller=Home}/{action=Index}/{id?}");
                 // Стандартная маршрутизация используется с контроллерами и представлениями.
                 endpoints.MapControllerRoute(
                     name: "default",
