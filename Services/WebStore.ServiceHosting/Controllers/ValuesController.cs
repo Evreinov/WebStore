@@ -43,7 +43,7 @@ namespace WebStore.ServiceHosting.Controllers
 
         [HttpPut]              // put -> http://localhost:5001/api/values/5
         [HttpPut("edit/{id}")]       // put -> http://localhost:5001/api/values/edit/5
-        public ActionResult Put(int id, [FromBody] string value)
+        public ActionResult Put(int id, [FromBody]string value)
         {
             if (id < 0)
                 return BadRequest();
