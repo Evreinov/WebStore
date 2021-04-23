@@ -50,7 +50,7 @@ namespace WebStore.Clients.Base
             return responce.EnsureSuccessStatusCode();
         }
 
-        protected HttpResponseMessage Delete<T>(string url) => DeleteAsync(url).Result;
+        protected HttpResponseMessage Delete(string url) => DeleteAsync(url).Result;
 
         protected async Task<HttpResponseMessage> DeleteAsync(string url)
         {

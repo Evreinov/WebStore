@@ -30,7 +30,7 @@ namespace WebStore.ServiceHosting.Controllers
         [HttpPut] //http://localhost:5001/api/employees/5
         public void Edit(Employee employee) => _EmployeesData.Edit(employee);
 
-        [HttpDelete("{id")] //http://localhost:5001/api/employees/5
+        [HttpDelete("{id}")] //http://localhost:5001/api/employees/5
         public bool Delete(int id) => _EmployeesData.Delete(id);
     }
 }
