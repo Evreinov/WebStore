@@ -9,6 +9,9 @@ namespace WebStore.Services.Data
     public static class TestData
     {
         public static List<Employee> Employees { get; set; }
+
+        public static void LoadEmployees() => LoadEmployeesAsync();
+
         public static async void LoadEmployeesAsync()
         {
             using (FileStream fs = new FileStream($"..//..//Services//WebStore.Services//Data//DataFiles//Employees.json", FileMode.OpenOrCreate))

@@ -9,12 +9,13 @@ using WebStore.Clients.Base;
 using WebStore.Domain.Models;
 using WebStore.Interfaces;
 using WebStore.Interfaces.Services;
+using WebStore.Services.Data;
 
 namespace WebStore.Clients.Employees
 {
     public class EmployeesClient : BaseClient, IEmployeesData
     {
-        public EmployeesClient(IConfiguration Configuration) : base(Configuration, WebAPI.Employees) { }
+        public EmployeesClient(IConfiguration Configuration) : base(Configuration, WebAPI.Employees) { TestData.LoadEmployees(); }
 
         public int Create(Employee employee) => Post(Address, employee).Content.ReadAsAsync<int>().Result;
 
