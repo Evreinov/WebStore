@@ -1,6 +1,8 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -10,6 +12,12 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using WebStore.DAL.Context;
+using WebStore.Domain.Identity;
+using WebStore.Interfaces.Services;
+using WebStore.Services.Data;
+using WebStore.Services.Services.InMemory;
+using WebStore.Services.Services.InSQL;
 
 namespace WebStore.ServiceHosting
 {
@@ -22,6 +30,35 @@ namespace WebStore.ServiceHosting
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddDbContext<WebStoreDB>(opt =>
+            opt.UseSqlServer(Configuration.GetConnectionString("WebStoreBD"))/*.UseLazyLoadingProxies()*/
+            );
+            services.AddTransient<WebStoreDbInitializer>();
+
+            services.AddIdentity<User, Role>().AddEntityFrameworkStores<WebStoreDB>()
+                .AddDefaultTokenProviders();
+
+            services.Configure<IdentityOptions>(cfg =>
+            {
+#if DEBUG
+                cfg.Password.RequiredLength = 3;
+                cfg.Password.RequireDigit = false;
+                cfg.Password.RequireLowercase = false;
+                cfg.Password.RequireUppercase = false;
+                cfg.Password.RequireNonAlphanumeric = false;
+                cfg.Password.RequiredUniqueChars = 3;
+#endif
+                cfg.User.RequireUniqueEmail = false;
+                cfg.User.AllowedUserNameCharacters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ_1234567890";
+
+                cfg.Lockout.AllowedForNewUsers = false;
+                cfg.Lockout.MaxFailedAccessAttempts = 10;
+                cfg.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromMinutes(15);
+            });
+
+            services.AddTransient<IEmployeesData, InMemoryEmployeesData>();
+            services.AddTransient<IProductData, SqlProductData>();
+            services.AddTransient<IOrderService, SqlOrderService>();
 
             services.AddControllers();
             services.AddSwaggerGen(c =>
