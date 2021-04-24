@@ -15,7 +15,7 @@ namespace WebStore.Clients.Employees
 {
     public class EmployeesClient : BaseClient, IEmployeesData
     {
-        public EmployeesClient(IConfiguration Configuration) : base(Configuration, WebAPI.Employees) { TestData.LoadEmployees(); }
+        public EmployeesClient(IConfiguration Configuration) : base(Configuration, WebAPI.Employees) { }
 
         public int Create(Employee employee) => Post(Address, employee).Content.ReadAsAsync<int>().Result;
 

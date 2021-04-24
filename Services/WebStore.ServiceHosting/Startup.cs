@@ -56,6 +56,7 @@ namespace WebStore.ServiceHosting
                 cfg.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromMinutes(15);
             });
 
+            TestData.LoadEmployees();
             services.AddTransient<IEmployeesData, InMemoryEmployeesData>();
             services.AddTransient<IProductData, SqlProductData>();
             services.AddTransient<IOrderService, SqlOrderService>();

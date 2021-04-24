@@ -63,10 +63,7 @@ namespace WebStore
                 cfg.SlidingExpiration = true;
             });
 
-            //services.AddTransient<IEmployeesData, InMemoryEmployeesData>();
-            //TestData.LoadEmployeesAsync();
             services.AddTransient<IEmployeesData, EmployeesClient>();
-            //services.AddTransient<IProductData, InMemoryProductData>();
             services.AddTransient<IProductData, SqlProductData>();
             services.AddTransient<ICartService, InCookiesCartService>();
             services.AddTransient<IOrderService, SqlOrderService>();

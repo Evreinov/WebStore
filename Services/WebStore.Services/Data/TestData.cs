@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.IO;
 using System.Text.Json;
+using System.Threading.Tasks;
 using WebStore.Domain.Entities;
 using WebStore.Domain.Models;
 
@@ -10,9 +11,9 @@ namespace WebStore.Services.Data
     {
         public static List<Employee> Employees { get; set; }
 
-        public static void LoadEmployees() => LoadEmployeesAsync();
+        public static void LoadEmployees() => LoadEmployeesAsync().Wait();
 
-        public static async void LoadEmployeesAsync()
+        public static async Task LoadEmployeesAsync()
         {
             using (FileStream fs = new FileStream($"..//..//Services//WebStore.Services//Data//DataFiles//Employees.json", FileMode.OpenOrCreate))
             {
