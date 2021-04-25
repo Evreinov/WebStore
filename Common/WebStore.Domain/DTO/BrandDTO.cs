@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace WebStore.Domain.DTO
 {
-    class BrandDTO
+    public class BrandDTO
     {
         public int Id { get; set; }
         public string Name { get; set; }

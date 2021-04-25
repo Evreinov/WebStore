@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using WebStore.Domain.ViewModels;
 using WebStore.Interfaces.Services;
+using WebStore.Services.Mapping;
 
 namespace WebStore.Components
 {
@@ -22,7 +23,7 @@ namespace WebStore.Components
                     Id = s.Id,
                     Name = s.Name,
                     Order = s.Order,
-                    ProductsCount = s.Products.Count()
+                    ProductsCount = s.FromDTO().Products.Count()
                 })
                 .ToList();
 
@@ -39,7 +40,7 @@ namespace WebStore.Components
                         Name = child_section.Name,
                         Order = child_section.Order,
                         Parent = parent_section,
-                        ProductsCount = child_section.Products.Count()
+                        ProductsCount = child_section.FromDTO().Products.Count()
                     });
                 parent_section.ChildSections.Sort(OrderSortMethod);
             }

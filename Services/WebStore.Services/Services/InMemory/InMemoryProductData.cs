@@ -2,19 +2,21 @@
 using System.Collections.Generic;
 using System.Linq;
 using WebStore.Domain;
+using WebStore.Domain.DTO;
 using WebStore.Domain.Entities;
 using WebStore.Interfaces.Services;
 using WebStore.Services.Data;
+using WebStore.Services.Mapping;
 
 namespace WebStore.Infrastructure.Services.InMemory
 {
     public class InMemoryProductData : IProductData
     {
-        public IEnumerable<Brand> GetBrands() => TestData.Brands;
+        public IEnumerable<BrandDTO> GetBrands() => TestData.Brands.ToDTO();
 
-        public IEnumerable<Section> GetSections() => TestData.Sections;
+        public IEnumerable<SectionDTO> GetSections() => TestData.Sections.ToDTO();
 
-        public IEnumerable<Product> GetProducts(ProductFilter Filter)
+        public IEnumerable<ProductDTO> GetProducts(ProductFilter Filter)
         {
             var query = TestData.Products;
 
@@ -24,9 +26,9 @@ namespace WebStore.Infrastructure.Services.InMemory
             if (Filter?.BrandId is { } brand_id)
                 query = query.Where(product => product.BrandId == brand_id);
 
-            return query;
+            return query.AsEnumerable().ToDTO();
         }
 
-        public Product GetProductById(int id) => TestData.Products.FirstOrDefault(p => p.Id == id);
+        public ProductDTO GetProductById(int id) => TestData.Products.FirstOrDefault(p => p.Id == id).ToDTO();
     }
 }
