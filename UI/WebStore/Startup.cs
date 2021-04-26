@@ -17,6 +17,7 @@ using WebStore.Services.Data;
 using WebStore.Services.Services.InCookies;
 using WebStore.Clients.Products;
 using WebStore.Services.Services.InSQL;
+using WebStore.Clients.Orders;
 
 namespace WebStore
 {
@@ -67,7 +68,8 @@ namespace WebStore
             //services.AddTransient<IProductData, SqlProductData>();
             services.AddScoped<IProductData, ProductsClient>();
             services.AddTransient<ICartService, InCookiesCartService>();
-            services.AddTransient<IOrderService, SqlOrderService>();
+            //services.AddTransient<IOrderService, SqlOrderService>();
+            services.AddTransient<IOrderService, OrdersClient>();
             services.AddControllersWithViews().AddRazorRuntimeCompilation();
             services.AddScoped<IValuesService, ValuesClient>();
         }
