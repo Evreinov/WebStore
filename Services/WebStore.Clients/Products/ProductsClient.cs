@@ -9,9 +9,11 @@ using WebStore.Interfaces.Services;
 
 namespace WebStore.Clients.Products
 {
-    class ProductsClient : BaseClient, IProductData
+    public class ProductsClient : BaseClient, IProductData
     {
         public ProductsClient(IConfiguration Configuration) : base(Configuration, WebAPI.Products) { }
+
+        public BrandDTO GetBrandByID(int id) => Get<BrandDTO>($"{Address}/brands/{id}");
 
         public IEnumerable<BrandDTO> GetBrands() => Get<IEnumerable<BrandDTO>>($"{Address}/brands");
 
@@ -22,6 +24,8 @@ namespace WebStore.Clients.Products
             .Content
             .ReadAsAsync<IEnumerable<ProductDTO>>()
             .Result;
+
+        public SectionDTO GetSectionById(int id) => Get<SectionDTO>($"{Address}/sections/{id}");
 
         public IEnumerable<SectionDTO> GetSections() => Get<IEnumerable<SectionDTO>>($"{Address}/sections");
     }

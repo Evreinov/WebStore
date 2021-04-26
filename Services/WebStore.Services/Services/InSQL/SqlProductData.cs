@@ -47,5 +47,15 @@ namespace WebStore.Services.Services.InSQL
             .Include(product => product.Section)
             .FirstOrDefault(product => product.Id == id)
             .ToDTO();
+
+        public SectionDTO GetSectionById(int id) => _db.Sections
+            .Include(s => s.Products)
+            .FirstOrDefault(s => s.Id == id)
+            .ToDTO();
+
+        public BrandDTO GetBrandByID(int id) => _db.Brands
+            .Include(b => b.Products)
+            .FirstOrDefault(b => b.Id == id)
+            .ToDTO();
     }
 }
