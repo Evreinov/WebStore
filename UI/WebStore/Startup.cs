@@ -25,14 +25,7 @@ namespace WebStore
     {
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddDbContext<WebStoreDB>(opt => 
-            opt.UseSqlServer(Configuration.GetConnectionString("WebStoreBD")).UseLazyLoadingProxies()
-            );
-            services.AddTransient<WebStoreDbInitializer>();
-
-            services.AddIdentity<User, Role>()
-                //.AddEntityFrameworkStores<WebStoreDB>()
-                .AddDefaultTokenProviders();
+            services.AddIdentity<User, Role>().AddDefaultTokenProviders();
 
             #region Identity stores custom implementations
 
@@ -81,19 +74,15 @@ namespace WebStore
             });
 
             services.AddTransient<IEmployeesData, EmployeesClient>();
-            //services.AddTransient<IProductData, SqlProductData>();
             services.AddScoped<IProductData, ProductsClient>();
             services.AddTransient<ICartService, InCookiesCartService>();
-            //services.AddTransient<IOrderService, SqlOrderService>();
             services.AddTransient<IOrderService, OrdersClient>();
             services.AddControllersWithViews().AddRazorRuntimeCompilation();
             services.AddScoped<IValuesService, ValuesClient>();
         }
 
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, WebStoreDbInitializer db)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
-            db.Initialize();
-
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
