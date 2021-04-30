@@ -42,24 +42,27 @@ namespace WebStore.Controllers
                 UserName = Model.UserName
             };
 
-            var registration_result = await _UserManager.CreateAsync(user, Model.Password);
-            if (registration_result.Succeeded)
+            using (_Logger.BeginScope("Регистрация пользователя {0}", Model.UserName))
             {
-                await _UserManager.AddToRoleAsync(user, Role.Users);
+                var registration_result = await _UserManager.CreateAsync(user, Model.Password);
+                if (registration_result.Succeeded)
+                {
+                    await _UserManager.AddToRoleAsync(user, Role.Users);
 
-                _Logger.LogInformation("Пользователь {0} успешно зарегистрирован", Model.UserName);
+                    _Logger.LogInformation("Пользователь {0} успешно зарегистрирован", Model.UserName);
 
-                await _SignInManager.SignInAsync(user, false);
+                    await _SignInManager.SignInAsync(user, false);
 
-                return RedirectToAction("Index", "Home");
+                    return RedirectToAction("Index", "Home");
+                }
+
+                _Logger.LogWarning("В процессе регистрации пользователя {0} возникли ошибки {1}",
+                    Model.UserName,
+                    string.Join(", ", registration_result.Errors.Select(e => e.Description)));
+
+                foreach (var error in registration_result.Errors)
+                    ModelState.AddModelError("", error.Description);
             }
-
-            _Logger.LogWarning("В процессе регистрации пользователя {0} возникли ошибки {1}",
-                Model.UserName,
-                string.Join(", ", registration_result.Errors.Select(e => e.Description)));
-
-            foreach (var error in registration_result.Errors)
-                ModelState.AddModelError("", error.Description);
 
             return View(Model);
         }
