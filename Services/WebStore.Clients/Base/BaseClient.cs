@@ -47,7 +47,7 @@ namespace WebStore.Clients.Base
 
         protected async Task<HttpResponseMessage> PutAsync<T>(string url, T item, CancellationToken Cancel = default)
         {
-            var responce = await Http.PostAsJsonAsync(url, item, Cancel);
+            var responce = await Http.PutAsJsonAsync(url, item, Cancel);
             return responce.EnsureSuccessStatusCode();
         }
 
