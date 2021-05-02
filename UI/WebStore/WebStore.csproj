@@ -9,6 +9,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Content Remove="log4net.config" />
+  </ItemGroup>
+
+  <ItemGroup>
     <_ContentIncludedByDefault Remove="wwwroot\css\styles.css" />
   </ItemGroup>
 
@@ -30,6 +34,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Include="log4net.config">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Include="wwwroot\Administrator\fonts\fontawesome-webfont.svg" />
     <None Include="wwwroot\Administrator\fonts\glyphicons-halflings-regular.svg" />
     <None Include="wwwroot\Administrator\js\bootstrap.min.js" />
