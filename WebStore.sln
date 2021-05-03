@@ -23,7 +23,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebStore.ServiceHosting", "
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebStore.Clients", "Services\WebStore.Clients\WebStore.Clients.csproj", "{C9F2E047-9DA3-42F8-9E1E-E51BE4D0396C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebStore.ConsoleUI", "UI\WebStore.ConsoleUI\WebStore.ConsoleUI.csproj", "{591F146D-0F81-4D2E-9AF8-8F99D1D54773}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebStore.ConsoleUI", "UI\WebStore.ConsoleUI\WebStore.ConsoleUI.csproj", "{591F146D-0F81-4D2E-9AF8-8F99D1D54773}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebStore.Logger", "Common\WebStore.Logger\WebStore.Logger.csproj", "{EF0D02CB-DA97-4DA9-AF17-B41D8919BC9D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -63,6 +65,10 @@ Global
 		{591F146D-0F81-4D2E-9AF8-8F99D1D54773}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{591F146D-0F81-4D2E-9AF8-8F99D1D54773}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{591F146D-0F81-4D2E-9AF8-8F99D1D54773}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EF0D02CB-DA97-4DA9-AF17-B41D8919BC9D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EF0D02CB-DA97-4DA9-AF17-B41D8919BC9D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EF0D02CB-DA97-4DA9-AF17-B41D8919BC9D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EF0D02CB-DA97-4DA9-AF17-B41D8919BC9D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -76,6 +82,7 @@ Global
 		{C82555C2-D2AF-44F6-BCA7-6703D10F9CA6} = {AEDC2BB0-7B8F-4D78-8CD9-E40FC1654EDD}
 		{C9F2E047-9DA3-42F8-9E1E-E51BE4D0396C} = {AEDC2BB0-7B8F-4D78-8CD9-E40FC1654EDD}
 		{591F146D-0F81-4D2E-9AF8-8F99D1D54773} = {83452B2A-46E4-4846-A3E3-0AA950BF6617}
+		{EF0D02CB-DA97-4DA9-AF17-B41D8919BC9D} = {30173065-FD0E-4538-A60D-09F5A420E2CE}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {E78C5835-4374-4399-A7E0-2B7F0AB0BCE4}
