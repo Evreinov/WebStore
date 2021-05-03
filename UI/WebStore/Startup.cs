@@ -18,6 +18,7 @@ using WebStore.Services.Services.InCookies;
 using WebStore.Clients.Products;
 using WebStore.Clients.Identity;
 using WebStore.Clients.Orders;
+using Microsoft.Extensions.Logging;
 
 namespace WebStore
 {
@@ -67,8 +68,10 @@ namespace WebStore
             services.AddScoped<IValuesService, ValuesClient>();
         }
 
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, ILoggerFactory log)
         {
+            log.AddLog4Net();
+
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
