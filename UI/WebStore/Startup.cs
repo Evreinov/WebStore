@@ -19,6 +19,7 @@ using WebStore.Clients.Products;
 using WebStore.Clients.Identity;
 using WebStore.Clients.Orders;
 using Microsoft.Extensions.Logging;
+using WebStore.Infrastructure.Middelware;
 
 namespace WebStore
 {
@@ -86,7 +87,7 @@ namespace WebStore
             app.UseAuthorization();
 
             app.UseStaticFiles();
-
+            app.UseMiddleware<ErrorHandingMiddleware>();
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllerRoute(
