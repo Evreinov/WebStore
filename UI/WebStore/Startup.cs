@@ -20,6 +20,7 @@ using WebStore.Clients.Identity;
 using WebStore.Clients.Orders;
 using Microsoft.Extensions.Logging;
 using WebStore.Infrastructure.Middelware;
+using WebStore.Services.Services;
 
 namespace WebStore
 {
@@ -63,7 +64,9 @@ namespace WebStore
 
             services.AddTransient<IEmployeesData, EmployeesClient>();
             services.AddScoped<IProductData, ProductsClient>();
-            services.AddTransient<ICartService, InCookiesCartService>();
+            //services.AddTransient<ICartService, InCookiesCartService>();
+            services.AddTransient<ICartService, CartService>();
+            services.AddScoped<ICartStore, InCookiesCartStore>();
             services.AddTransient<IOrderService, OrdersClient>();
             services.AddControllersWithViews().AddRazorRuntimeCompilation();
             services.AddScoped<IValuesService, ValuesClient>();
