@@ -7,6 +7,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using System;
+using WebStore.Clients.Employees;
 using WebStore.Clients.Values;
 using WebStore.DAL.Context;
 using WebStore.Domain.Identity;
@@ -14,8 +15,12 @@ using WebStore.Interfaces.Services;
 using WebStore.Interfaces.TestAPI;
 using WebStore.Services.Data;
 using WebStore.Services.Services.InCookies;
-using WebStore.Services.Services.InMemory;
-using WebStore.Services.Services.InSQL;
+using WebStore.Clients.Products;
+using WebStore.Clients.Identity;
+using WebStore.Clients.Orders;
+using Microsoft.Extensions.Logging;
+using WebStore.Infrastructure.Middelware;
+using WebStore.Services.Services;
 
 namespace WebStore
 {
@@ -23,14 +28,9 @@ namespace WebStore
     {
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddDbContext<WebStoreDB>(opt => 
-            opt.UseSqlServer(Configuration.GetConnectionString("WebStoreBD")).UseLazyLoadingProxies()
-            );
-            services.AddTransient<WebStoreDbInitializer>();
-
-            services.AddIdentity<User, Role>().AddEntityFrameworkStores<WebStoreDB>()
+            services.AddIdentity<User, Role>()
+                .AddIdntityWebStoreWebAPIClients()
                 .AddDefaultTokenProviders();
-
             services.Configure<IdentityOptions>(cfg =>
             {
 #if DEBUG
@@ -62,19 +62,19 @@ namespace WebStore
                 cfg.SlidingExpiration = true;
             });
 
-            services.AddTransient<IEmployeesData, InMemoryEmployeesData>();
-            TestData.LoadEmployeesAsync();
-            //services.AddTransient<IProductData, InMemoryProductData>();
-            services.AddTransient<IProductData, SqlProductData>();
-            services.AddTransient<ICartService, InCookiesCartService>();
-            services.AddTransient<IOrderService, SqlOrderService>();
+            services.AddTransient<IEmployeesData, EmployeesClient>();
+            services.AddScoped<IProductData, ProductsClient>();
+            //services.AddTransient<ICartService, InCookiesCartService>();
+            services.AddTransient<ICartService, CartService>();
+            services.AddScoped<ICartStore, InCookiesCartStore>();
+            services.AddTransient<IOrderService, OrdersClient>();
             services.AddControllersWithViews().AddRazorRuntimeCompilation();
             services.AddScoped<IValuesService, ValuesClient>();
         }
 
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, WebStoreDbInitializer db)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, ILoggerFactory log)
         {
-            db.Initialize();
+            log.AddLog4Net();
 
             if (env.IsDevelopment())
             {
@@ -90,7 +90,7 @@ namespace WebStore
             app.UseAuthorization();
 
             app.UseStaticFiles();
-
+            app.UseMiddleware<ErrorHandingMiddleware>();
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllerRoute(

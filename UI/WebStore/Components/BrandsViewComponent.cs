@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using WebStore.Domain.ViewModels;
 using WebStore.Interfaces.Services;
+using WebStore.Services.Mapping;
 
 namespace WebStore.Components
 {
@@ -18,7 +19,7 @@ namespace WebStore.Components
             {
                 Id = brand.Id,
                 Name = brand.Name,
-                ProductsCount = brand.Products.Count()
+                ProductsCount = _ProductData.GetProducts(new Domain.ProductFilter { BrandId = brand.Id }).Count()
             });
     }
 }

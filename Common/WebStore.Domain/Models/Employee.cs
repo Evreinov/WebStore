@@ -67,5 +67,7 @@ namespace WebStore.Domain.Models
         /// Путь к фотографии
         /// </summary>
         public string ImagePath { get; set; }
+
+        public override string ToString() => $"{LastName} {FirstName} {Patronymic} {Birthday.ToString("d")}";
     }
 }
