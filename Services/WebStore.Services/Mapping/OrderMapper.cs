@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using WebStore.Domain.DTO;
+using WebStore.Domain.Entities;
 using WebStore.Domain.Orders;
 
 namespace WebStore.Services.Mapping
@@ -17,6 +18,7 @@ namespace WebStore.Services.Mapping
                 Id = Item.Id,
                 Price = Item.Price,
                 Quantity = Item.Quantity,
+                ProductId = Item.Product.Id,
             };
 
         public static OrderItem FromDTO(this OrderItemDTO Item) => Item is null
@@ -26,6 +28,7 @@ namespace WebStore.Services.Mapping
                 Id = Item.Id,
                 Price = Item.Price,
                 Quantity = Item.Quantity,
+                Product = new Product { Id = Item.Id },
             };
 
         public static OrderDTO ToDTO(this Order Order) => Order is null
