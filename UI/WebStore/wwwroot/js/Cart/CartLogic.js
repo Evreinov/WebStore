@@ -69,7 +69,7 @@
     },
 
     refreshPrice: function (container) {
-        const count = parseInt($(".cart_quantity_input", tr).val());
+        const count = parseInt($(".cart_quantity_input", container).val());
         const price = parseFloat($(".cart_price", container).data("price"));
 
         const totalPrice = count * price;
