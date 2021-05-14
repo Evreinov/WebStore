@@ -59,7 +59,7 @@ namespace WebStore.Controllers
 
         #region WebAPI
 
-        public IActionResult GetFeateresItems(int? BrandId, int? SectionId, int Page = 1, int? PageSize = null) => 
+        public IActionResult GetFeaturesItems(int? BrandId, int? SectionId, int Page = 1, int? PageSize = null) => 
             PartialView("Partial/_FeaturesItems", GetProducts(BrandId, SectionId, Page, PageSize));
 
         private IEnumerable<ProductViewModel> GetProducts(int? BrandId, int? SectionId, int Page, int? PageSize) =>
