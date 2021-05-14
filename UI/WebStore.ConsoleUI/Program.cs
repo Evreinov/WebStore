@@ -17,7 +17,7 @@ namespace WebStore.ConsoleUI
             Console.WriteLine("К запросу готов!");
             Console.ReadLine();
 
-            foreach (var itemproduct in products_client.GetProducts())
+            foreach (var itemproduct in products_client.GetProducts().Products)
                 Console.WriteLine("{0} - {1}", itemproduct.Name, itemproduct.Price);
 
             Console.WriteLine("Запрос завершен!");

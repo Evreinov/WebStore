@@ -58,7 +58,7 @@ namespace WebStore.Controllers
                 Order = OrderModel,
                 Items = _CartService.GetViewModel().Items.Select(item => new OrderItemDTO
                 {
-                    Id = item.Product.Id,
+                    ProductId = item.Product.Id,
                     Price = item.Product.Price,
                     Quantity = item.Quantity,
 
@@ -77,5 +77,35 @@ namespace WebStore.Controllers
             ViewBag.OrderId = id;
             return View();
         }
+
+        #region WebAPI
+
+        public IActionResult GetCartView() => ViewComponent("Cart");
+
+        public IActionResult AddAPI(int id)
+        {
+            _CartService.Add(id);
+            return Json(new { id, message = $"Товар с id:{id} был добавлен в корзину" });
+        }
+
+        public IActionResult RemoveAPI(int id)
+        {
+            _CartService.Remove(id);
+            return Ok(new { id, message = $"Товар с id:{id} был удален из корзины" });
+        }
+
+        public IActionResult DecrementAPI(int id)
+        {
+            _CartService.Decrement(id);
+            return Ok();
+        }
+
+        public IActionResult ClearAPI()
+        {
+            _CartService.Clear();
+            return Ok();
+        }
+
+        #endregion
     }
 }

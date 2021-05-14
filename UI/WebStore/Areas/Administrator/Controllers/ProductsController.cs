@@ -6,6 +6,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using WebStore.Domain.Identity;
 using WebStore.Interfaces.Services;
+using WebStore.Services.Mapping;
 
 namespace WebStore.Areas.Administrator.Controllers
 {
@@ -16,7 +17,7 @@ namespace WebStore.Areas.Administrator.Controllers
 
         public ProductsController(IProductData ProductData) { _ProductData = ProductData; }
 
-        public IActionResult Index() => View(_ProductData.GetProducts());
+        public IActionResult Index() => View(_ProductData.GetProducts().Products.FromDTO());
 
         public IActionResult Edit(int id) =>
             _ProductData.GetProductById(id) is { } product
