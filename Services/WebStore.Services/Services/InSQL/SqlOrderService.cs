@@ -66,7 +66,7 @@ namespace WebStore.Services.Services.InSQL
             //    }).ToArray();
             foreach (var item in OrderModel.Items)
             {
-                var product = await _db.Products.FindAsync(item.Id);
+                var product = await _db.Products.FindAsync(item.ProductId);
 
                 if (product is null) continue;
 

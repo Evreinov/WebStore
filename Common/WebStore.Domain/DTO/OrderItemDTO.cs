@@ -19,5 +19,10 @@
         /// Количество.
         /// </summary>
         public int Quantity { get; set; }
+
+        /// <summary>
+        /// Идентификатор продукта.
+        /// </summary>
+        public int ProductId { get; set; }
     }
 }
