@@ -26,7 +26,7 @@ namespace WebStore.Components
             {
                 Id = brand.Id,
                 Name = brand.Name,
-                ProductsCount = _ProductData.GetProducts(new Domain.ProductFilter { BrandId = brand.Id }).Count()
+                ProductsCount = _ProductData.GetProducts(new Domain.ProductFilter { BrandId = brand.Id }).Products.Count()
             });
     }
 }

@@ -5,6 +5,7 @@
     ViewBag.Title = "Index";
     var products = ProductData
         .GetProducts()
+        .Products
         .FromDTO()
         .OrderBy(p => p.Order)
         .Take(6)
